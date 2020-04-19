@@ -31,6 +31,7 @@ foreach( $ipv4_raw as $key => $val ){
   }
 }
 $ipv4 = trim( $ipv4 );
+$ipv4 = explode( "\n", $ipv4 );
 
 ## リクエストパラメータ'ip' と比較してマッチしたらTRUE 返答返し終了 ##
 foreach ( $ipv4 as $key => $val ) {
