@@ -28,7 +28,7 @@ function isJP($reqip){
 	$ipv4 = trim( $ipv4 );
 	$ipv4 = explode( "\n", $ipv4 );
 
-	## リクエストパラメータ'ip' と比較してマッチしたらTRUE 返答返し終了 ##
+	## リクエストパラメータ `ip` と比較してマッチしたら TRUE 返答返し終了 ##
 	foreach ( $ipv4 as $key => $val ) {
 		if ( is_included_ipv4_addresses( $val, $reqip ) === TRUE ) {
 			return [ TRUE, $reqip ];
