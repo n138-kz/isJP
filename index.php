@@ -61,11 +61,21 @@ function main(){
 	
 	echo json_encode(
 		[
-			isJP($reqip),
-			$reqip,
-			[
-				time(),
-				date('Y/m/d H:i:s T')
+			'header' => [
+				'{Boolean}',
+				'{String}',
+				[
+					'{Integer}',
+					'{Datetime}',
+				]
+			],
+			'result' => [
+				isJP($reqip),
+				$reqip,
+				[
+					time(),
+					date('Y/m/d H:i:s T')
+				]
 			]
 		]
 	);
