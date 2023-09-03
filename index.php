@@ -45,11 +45,11 @@ function isJP($reqip){
 	## リクエストパラメータ `ip` と比較してマッチしたら TRUE 返答返し終了 ##
 	foreach ( $ipv4 as $key => $val ) {
 		if ( is_included_ipv4_addresses( $val, $reqip ) === TRUE ) {
-			return [ TRUE, $reqip, [ time(), date('Y/m/d H:i:s') ] ];
+			return TRUE;
 		}
 	}
 
-	return [ FALSE, $reqip, [ time(), date('Y/m/d H:i:s') ] ];
+	return FALSE;
 }
 
 function main(){
@@ -59,7 +59,16 @@ function main(){
 		$reqip = $_GET['ip'];
 	}
 	
-	echo json_encode( isJP($reqip) );
+	echo json_encode(
+		[
+			isJP($reqip),
+			$reqip,
+			[
+				time(),
+				date('Y/m/d H:i:s T')
+			]
+		]
+	);
 	exit();
 }
 main();
