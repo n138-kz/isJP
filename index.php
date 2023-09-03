@@ -26,6 +26,15 @@ function isJP($reqip){
 	 * @return {Boolean} 判別結果
 	 *
 	 */
+	$ipv4 = ['10.0.0.0/8', '172.16.0.0/12', '192.168.0.0/16'];
+
+	/* リクエストパラメータ `ip` と比較してマッチしたら TRUE 返答返し終了 */
+	foreach ( $ipv4 as $key => $val ) {
+		if ( is_included_ipv4_addresses( $val, $reqip ) === TRUE ) {
+			return [TRUE, 'RFC1918'];
+		}
+	}
+
 	$ipv4_raw = file('https://ipv4.fetus.jp/jp.txt');
 	$ipv4 = '';
 	foreach( $ipv4_raw as $key => $val ){
@@ -45,11 +54,11 @@ function isJP($reqip){
 	/* リクエストパラメータ `ip` と比較してマッチしたら TRUE 返答返し終了 */
 	foreach ( $ipv4 as $key => $val ) {
 		if ( is_included_ipv4_addresses( $val, $reqip ) === TRUE ) {
-			return TRUE;
+			return [TRUE, 'ja/JP'];
 		}
 	}
 
-	return FALSE;
+	return [FALSE, ''];
 }
 
 function main(){
@@ -67,7 +76,10 @@ function main(){
 				'runtime_version' => dechex(filemtime(__FILE__))
 			],
 			'header' => [
-				'{Boolean} Result',
+				[
+					'{Boolean} Result',
+					'{String} Detail'
+				],
 				'{String} Request IP Address',
 				[
 					'{Integer} Timestamp',
