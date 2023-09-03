@@ -13,8 +13,10 @@
 - [RFC 4193](https://tools.ietf.org/html/rfc4193) で定義されている IPv6ユニキャストアドレス はサポートしていません。
 - [RFC 2460](https://tools.ietf.org/html/rfc2460) で定義されている IPv6アドレス はサポートしていません。
 
-# How to use
-サーバの設定で`DirectoryIndex index.php`を設定している場合はファイル名を省略できます。もしくはファイル名を置換してください。
+## How to use
+
+サーバの設定で `DirectoryIndex index.php` を設定している場合はファイル名を省略できます。もしくはファイル名を置換してください。
+
 ```XHR
 GET /isJP/
 ```
