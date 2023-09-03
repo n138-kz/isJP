@@ -7,7 +7,7 @@
 ## Detail
 
 - デフォルトで自分自身の接続元IPv4アドレスを用いてテストします。
-- IPv4アドレスデータベースは https://ipv4.fetus.jp を基に設定しています。
+- IPv4アドレスデータベースは `https://ipv4.fetus.jp` を基に設定しています。
 - 内部データベースは **テキストファイル** です。（せめてsqliteにしときゃよかったって後悔してる）
 - [RFC 1918](https://tools.ietf.org/html/rfc1918) で定義されている IPv4プライベートアドレス はサポートしていません。
 - [RFC 4193](https://tools.ietf.org/html/rfc4193) で定義されている IPv6ユニキャストアドレス はサポートしていません。
