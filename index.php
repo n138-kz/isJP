@@ -75,17 +75,6 @@ function main(){
 				'runtime_hash' => md5(md5_file(__FILE__, TRUE)),
 				'runtime_version' => dechex(filemtime(__FILE__))
 			],
-			'header' => [
-				'result'=>[
-					'result'=>'{Boolean} Result',
-					'detail'=>'{String} Detail'
-				],
-				'request'=>'{String} Request IP Address',
-				'time'=>[
-					'timestamp'=>'{Integer} Timestamp',
-					'description'=>'{Datetime} DateTime Format'
-				]
-			],
 			'result' => [
 				'result'=>isJP($reqip),
 				'request'=>$reqip,
