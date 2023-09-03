@@ -17,11 +17,11 @@
 
 サーバの設定で `DirectoryIndex index.php` を設定している場合はファイル名を省略できます。もしくはファイル名を置換してください。
 
-```XHR
+```http
 GET /isJP/
 ```
 
-```XHR
+```http
 GET /isJP/index.php
 ```
 
