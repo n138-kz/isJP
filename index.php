@@ -3,7 +3,15 @@ date_default_timezone_set('Asia/Tokyo');
 header('content-type: application/json');
 
 function is_included_ipv4_addresses($range, $remote_ip){
-	## [IPアドレスが指定した範囲内にあるかどうか判別する](https://qiita.com/ran/items/039706c93a8ff85a011a) ##
+	/**
+	 * IPアドレスが指定した範囲内にあるかどうか判別する
+	 * https://qiita.com/ran/items/039706c93a8ff85a011a
+	 * 
+	 * @param {String} range CIDR表記(0.0.0.0/32)
+	 * @param {String} remote_ip
+	 * @return {Boolean} 判別結果
+	 *
+	 */
 	list($accept_ip, $mask) = explode('/', $range);
 	$accept_long = ip2long($accept_ip) >> (32 - $mask);
 	$remote_long = ip2long($remote_ip) >> (32 - $mask);
