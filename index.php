@@ -46,19 +46,20 @@ function isJP($reqip){
 	foreach ( $ipv4 as $key => $val ) {
 		if ( is_included_ipv4_addresses( $val, $reqip ) === TRUE ) {
 			return [ TRUE, $reqip ];
-			exit();
 		}
 	}
 
 	return [ FALSE, $reqip ];
+}
+
+function main(){
+	## リクエストパラメータ `ip` に値を持ってたらそれに置き換える ##
+	$reqip = $_SERVER['REMOTE_ADDR'];
+	if ( isset( $_GET['ip'] ) && $_GET['ip'] != '' ) {
+		$reqip = $_GET['ip'];
+	}
+	
+	echo json_encode( isJP($reqip) );
 	exit();
-
 }
-
-## リクエストパラメータ `ip` に値を持ってたらそれに置き換える ##
-$reqip = $_SERVER['REMOTE_ADDR'];
-if ( isset( $_GET['ip'] ) && $_GET['ip'] != '' ) {
-	$reqip = $_GET['ip'];
-}
-
-echo json_encode( isJP($reqip) );
+main();
