@@ -25,7 +25,8 @@ GET /isJP/
 GET /isJP/index.php
 ```
 
-# Supported Web Server
+## Supported Web Server
+
 - PHP: >=5.4
 - Apache: >= 2.4
 
