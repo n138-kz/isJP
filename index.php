@@ -31,7 +31,7 @@ function isJP($reqip){
 	/* リクエストパラメータ `ip` と比較してマッチしたら TRUE 返答返し終了 */
 	foreach ( $ipv4 as $key => $val ) {
 		if ( is_included_ipv4_addresses( $val, $reqip ) === TRUE ) {
-			return [TRUE, 'RFC1918'];
+			return ['result'=>TRUE, 'detail'=>'RFC1918'];
 		}
 	}
 
@@ -54,7 +54,7 @@ function isJP($reqip){
 	/* リクエストパラメータ `ip` と比較してマッチしたら TRUE 返答返し終了 */
 	foreach ( $ipv4 as $key => $val ) {
 		if ( is_included_ipv4_addresses( $val, $reqip ) === TRUE ) {
-			return [TRUE, 'ja/JP'];
+			return ['result'=>TRUE, 'detail'=>'ja_JP'];
 		}
 	}
 
@@ -76,22 +76,22 @@ function main(){
 				'runtime_version' => dechex(filemtime(__FILE__))
 			],
 			'header' => [
-				[
-					'{Boolean} Result',
-					'{String} Detail'
+				'result'=>[
+					'result'=>'{Boolean} Result',
+					'detail'=>'{String} Detail'
 				],
-				'{String} Request IP Address',
-				[
-					'{Integer} Timestamp',
-					'{Datetime} DateTime Format'
+				'request'=>'{String} Request IP Address',
+				'time'=>[
+					'timestamp'=>'{Integer} Timestamp',
+					'description'=>'{Datetime} DateTime Format'
 				]
 			],
 			'result' => [
-				isJP($reqip),
-				$reqip,
-				[
-					time(),
-					date('Y/m/d H:i:s T')
+				'result'=>isJP($reqip),
+				'request'=>$reqip,
+				'time'=>[
+					'timestamp'=>time(),
+					'description'=>date('Y/m/d H:i:s T')
 				]
 			]
 		]
