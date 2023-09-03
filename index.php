@@ -53,6 +53,27 @@ function isJP($reqip){
 	 *    →[a4]を整形し、<キャッシュファイル>に保存。→[a5]
 	 *    →比較元を<神様データ>とする。
 	 */
+	$internalDB = [];
+	$internalDB['mode'] = 'text';
+	if (FALSE) {
+	} elseif ( $internalDB['mode'] == 'text' ) {
+		$internalDB['fname'] = 'jp.txt';
+		if (file_exists($$internalDB['fname'])) {
+			$internalDB['mtime'] = filemtime($internalDB['fname']);
+			$internalDB['older'] = FALSE;
+			$internalDB['older'] = ( time() - $internalDB['mtime'] ) >= ( 3660 * 18 );
+
+			if ($internalDB['older']) {
+				$ipv4_raw = file_get_contents('https://ipv4.fetus.jp/jp.txt');
+				$internalDB['saved'] = file_put_contents($internalDB['fname'], $ipv4_raw);
+			} else {
+				$ipv4_raw = file_get_contents($internalDB['fname']);
+			}
+		} else {
+			$ipv4_raw = file_get_contents('https://ipv4.fetus.jp/jp.txt');
+			$internalDB['saved'] = file_put_contents($internalDB['fname'], $ipv4_raw);
+		}
+	}
 
 	/* ダウンロードして整形 */
 	$ipv4_raw = file('https://ipv4.fetus.jp/jp.txt');
