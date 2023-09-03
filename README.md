@@ -10,7 +10,7 @@
 - IPv4アドレスデータベースは `https://ipv4.fetus.jp` を基に設定しています。
 - ~~内部データベースは **テキストファイル** です。（せめてsqliteにしときゃよかったって後悔してる）~~
 - 内部データベースは使用しません。毎回神様データにアクセスします。
-- [RFC 1918](https://tools.ietf.org/html/rfc1918) で定義されている IPv4プライベートアドレス はサポートしていません。
+- [RFC 1918](https://tools.ietf.org/html/rfc1918) で定義されている IPv4プライベートアドレス はサポートしています。
 - [RFC 4193](https://tools.ietf.org/html/rfc4193) で定義されている IPv6ユニキャストアドレス はサポートしていません。
 - [RFC 2460](https://tools.ietf.org/html/rfc2460) で定義されている IPv6アドレス はサポートしていません。
 
@@ -51,32 +51,21 @@ GET /isJP/index.php
 
 ```json
 {
-    "meta":{
-        "version":2,
-        "runtime_hash":"0123456789abcdef",
-        "runtime_version":"01234567"
+    "meta": {
+        "version": 2,
+        "runtime_hash": "851ca5840b38089ae513c1adb12e09b9",
+        "runtime_version": "64f3dd3c",
+        "issued_at": {
+            "timestamp": 1693703504,
+            "description": "2023/09/03 10:11:44 JST"
+        }
     },
-    "header":[
-        [
-            "{Boolean} Result",
-            "{String} Detail"
-        ],
-        "{String} Request IP Address",
-        [
-            "{Integer} Timestamp",
-            "{Datetime} DateTime Format"
-        ]
-    ],
-    "result":[
-        [
-            false,
-            "ja\/JP"
-        ],
-        "0.0.0.0",
-        [
-            1693702452,
-            "2023\/09\/03 09:54:12 JST"
-        ]
-    ]
+    "result": {
+        "result": {
+            "result": true,
+            "detail": "RFC1918"
+        },
+        "request": "172.16.0.1"
+    }
 }
 ```
