@@ -61,6 +61,10 @@ function main(){
 	
 	echo json_encode(
 		[
+			'metainfo' => [
+				'version' => 2,
+				'runtime_version' => '1'
+			],
 			'header' => [
 				'{Boolean} Result',
 				'{String} Request IP Address',
