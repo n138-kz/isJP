@@ -53,6 +53,7 @@ function isJP($reqip){
 	 *    →比較元を<神様データ>とする。
 	 */
 
+	/* ダウンロードして整形 */
 	$ipv4_raw = file('https://ipv4.fetus.jp/jp.txt');
 	$ipv4 = '';
 	foreach( $ipv4_raw as $key => $val ){
@@ -68,6 +69,7 @@ function isJP($reqip){
 	}
 	$ipv4 = trim( $ipv4 );
 	$ipv4 = explode( "\n", $ipv4 );
+	/* ダウンロードして整形::until */
 
 	/* リクエストパラメータ `ip` と比較してマッチしたら TRUE 返答返し終了 */
 	foreach ( $ipv4 as $key => $val ) {
