@@ -36,6 +36,7 @@ function isJP($reqip){
 		}
 	}
 
+	$internalDB = [];
 	/* InternalDB::textfile */
 	/**
 	 * 
@@ -53,7 +54,6 @@ function isJP($reqip){
 	 *    →[a4]を整形し、<キャッシュファイル>に保存。→[a5]
 	 *    →比較元を<神様データ>とする。
 	 */
-	$internalDB = [];
 	$internalDB['mode'] = 'text';
 	if (FALSE) {
 	} elseif ( $internalDB['mode'] == 'text' ) {
