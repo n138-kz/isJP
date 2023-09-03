@@ -47,6 +47,7 @@ GET /isJP/index.php
     "0.0.0.0"
 ]
 ```
+since: [0aaaf2add1efcc74a580cb63e13ffc36aef86d57](https://github.com/n138-kz/isJP/tree/0aaaf2add1efcc74a580cb63e13ffc36aef86d57)
 
 ### ver 2
 
