@@ -41,7 +41,7 @@ function isJP($reqip){
 
 }
 
-## リクエストパラメータ'ip'に値を持ってたらそれに置き換える ##
+## リクエストパラメータ `ip` に値を持ってたらそれに置き換える ##
 $reqip = $_SERVER['REMOTE_ADDR'];
 if ( isset( $_GET['ip'] ) && $_GET['ip'] != '' ) {
 	$reqip = $_GET['ip'];
