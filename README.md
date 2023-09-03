@@ -30,6 +30,7 @@ GET /isJP/index.php
 - PHP: >=5.4
 - Apache: >= 2.4
 
-# Requires
+## Requires
+
 - HTTP WEB Server(Apacheなど)
 - PHP
