@@ -41,11 +41,42 @@ GET /isJP/index.php
 ### ver 1
 
 ```json
-[ true, "0.0.0.0" ]
+[
+    true,
+    "0.0.0.0"
+]
 ```
 
 ### ver 2
 
 ```json
-{"meta":{"version":2,"runtime_hash":"6e9b07a31d79386ec9581f925a9ac26b","runtime_version":"64f3d92b"},"header":[["{Boolean} Result","{String} Detail"],"{String} Request IP Address",["{Integer} Timestamp","{Datetime} DateTime Format"]],"result":[[false,"ja\/JP"],"0.0.0.0",[1693702452,"2023\/09\/03 09:54:12 JST"]]}
+{
+    "meta":{
+        "version":2,
+        "runtime_hash":"0123456789abcdef",
+        "runtime_version":"01234567"
+    },
+    "header":[
+        [
+            "{Boolean} Result",
+            "{String} Detail"
+        ],
+        "{String} Request IP Address",
+        [
+            "{Integer} Timestamp",
+            "{Datetime} DateTime Format"
+        ]
+    ],
+    "result":[
+        [
+            false,
+            "ja\/JP"
+        ],
+        "0.0.0.0",
+        [
+            1693702452,
+            "2023\/09\/03 09:54:12 JST"
+        ]
+    ]
+}
 ```
