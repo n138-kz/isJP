@@ -1,5 +1,13 @@
 # isJP
 
+[![pages-build-deployment](https://github.com/n138-kz/isJP/actions/workflows/pages/pages-build-deployment/badge.svg?branch=master)](https://github.com/n138-kz/isJP/actions/workflows/pages/pages-build-deployment)
+![GitHub](https://img.shields.io/github/license/n138-kz/isJP)
+  
+[![GitHub language count](https://img.shields.io/github/languages/count/lkz138/isJP)](README.md)
+[![GitHub top language](https://img.shields.io/github/languages/top/lkz138/isJP)](README.md)
+[![GitHub commit activity](https://img.shields.io/github/commit-activity/m/lkz138/isJP)](README.md)
+[![GitHub last commit](https://img.shields.io/github/last-commit/lkz138/isJP)](README.md)
+
 ## Futures
 
 指定した(もしくは自分自身の)IPアドレスが日本国内のアドレスか判断します。
