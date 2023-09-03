@@ -37,10 +37,9 @@ function isJP($reqip){
 	}
 
 	$internalDB = [];
-	/* InternalDB::textfile */
 	/**
 	 * 
-	 * @flow
+	 * @flow InternalDB::textfile
 	 * - <キャッシュファイル>が存在するか→[a0]
 	 * →[a0]が真の時、mtimeを取得→[a1]
 	 *    →[a1]の時間がと今の時間を比較→[a2]
@@ -57,6 +56,7 @@ function isJP($reqip){
 	$internalDB['mode'] = 'text';
 	if (FALSE) {
 	} elseif ( $internalDB['mode'] == 'text' ) {
+		/* InternalDB::textfile */
 		$internalDB['fname'] = 'jp.txt';
 		if (file_exists($$internalDB['fname'])) {
 			$internalDB['mtime'] = filemtime($internalDB['fname']);
