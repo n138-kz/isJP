@@ -52,21 +52,21 @@ GET /isJP/index.php
 
 ```json
 {
-    "meta": {
-        "version": 2,
-        "runtime_hash": "851ca5840b38089ae513c1adb12e09b9",
-        "runtime_version": "64f3dd3c",
-        "issued_at": {
-            "timestamp": 1693703504,
-            "description": "2023/09/03 10:11:44 JST"
+    "meta":{
+        "version":2,
+        "runtime_hash":"ffffffffffffffffffffffffffffffff",
+        "runtime_version":"ffffffff",
+        "issued_at":{
+            "timestamp":1693704010,
+            "description":"2023\/09\/03 10:20:10 JST"
         }
     },
-    "result": {
-        "result": {
-            "result": true,
-            "detail": "RFC1918"
-        },
-        "request": "172.16.0.1"
+    "result":{
+        "result":{
+            "result":true,
+            "detail":"ja_JP"
+            }
+        ,"request":"183.x.x.252"
     }
 }
 ```
