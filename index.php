@@ -19,7 +19,13 @@ function is_included_ipv4_addresses($range, $remote_ip){
 }
 
 function isJP($reqip){
-	## IPアドレス一覧をダウンロードしてコメント行と空白行を削る ##
+	/**
+	 * IPアドレス一覧をダウンロードしてコメント行と空白行を削る
+	 * 
+	 * @param {String} reqip
+	 * @return {Boolean} 判別結果
+	 *
+	 */
 	$ipv4_raw = file('https://ipv4.fetus.jp/jp.txt');
 	$ipv4 = '';
 	foreach( $ipv4_raw as $key => $val ){
