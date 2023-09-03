@@ -61,9 +61,10 @@ function main(){
 	
 	echo json_encode(
 		[
-			'metainfo' => [
+			'meta' => [
 				'version' => 2,
-				'runtime_version' => '1'
+				'runtime_hash' => md5(md5_file(__FILE__, TRUE)),
+				'runtime_version' => dechex(filemtime(__FILE__))
 			],
 			'header' => [
 				'{Boolean} Result',
