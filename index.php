@@ -62,11 +62,11 @@ function main(){
 	echo json_encode(
 		[
 			'header' => [
-				'{Boolean}',
-				'{String}',
+				'{Boolean} Result',
+				'{String} Request IP Address',
 				[
-					'{Integer}',
-					'{Datetime}',
+					'{Integer} Timestamp',
+					'{Datetime} DateTime Format'
 				]
 			],
 			'result' => [
