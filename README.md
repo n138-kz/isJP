@@ -1,4 +1,7 @@
-# Futures
+# isJP
+
+## Futures
+
 指定した(もしくは自分自身の)IPアドレスが日本国内のアドレスか判断します。
 
 # Detail
