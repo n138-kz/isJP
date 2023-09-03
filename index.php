@@ -73,15 +73,15 @@ function main(){
 			'meta' => [
 				'version' => 2,
 				'runtime_hash' => md5(md5_file(__FILE__, TRUE)),
-				'runtime_version' => dechex(filemtime(__FILE__))
+				'runtime_version' => dechex(filemtime(__FILE__)),
+				'issued_at'=>[
+					'timestamp'=>time(),
+					'description'=>date('Y/m/d H:i:s T')
+				]
 			],
 			'result' => [
 				'result'=>isJP($reqip),
 				'request'=>$reqip,
-				'time'=>[
-					'timestamp'=>time(),
-					'description'=>date('Y/m/d H:i:s T')
-				]
 			]
 		]
 	);
