@@ -53,6 +53,8 @@ function isJP($reqip){
 	 *    →[a4]を整形し、<キャッシュファイル>に保存。→[a5]
 	 *    →比較元を<神様データ>とする。
 	 * 
+	 * @flow InternalDB::sqlite3
+	 * - 全レコード抽出
 	 */
 	$internalDB['mode'] = 'text';
 	if (FALSE) {
@@ -74,6 +76,7 @@ function isJP($reqip){
 			$ipv4_raw = file_get_contents('https://ipv4.fetus.jp/jp.txt');
 			$internalDB['saved'] = file_put_contents($internalDB['fname'], $ipv4_raw);
 		}
+	} elseif ( $internalDB['mode'] == 'sqlite' ) {
 	}
 
 	/* ダウンロードして整形 */
