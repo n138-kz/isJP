@@ -104,6 +104,10 @@ function isJP($reqip){
 	return [FALSE, ''];
 }
 
+function concat($arr){
+	return implode( '', $arr );
+}
+
 function main(){
 	/* リクエストパラメータ `ip` に値を持ってたらそれに置き換える */
 	$reqip = $_SERVER['REMOTE_ADDR'];
@@ -125,7 +129,15 @@ function main(){
 			'result' => [
 				'result'=>isJP($reqip),
 				'request'=>$reqip,
-			]
+			],
+			'urls' => [
+				'github_url' => 'https://github.com/n138-kz/isJP',
+				'git_url' => 'git@github.com:n138-kz/isJP.git',
+			],
+			'usage' => [
+				concat([$_SERVER['REQUEST_SCHEME'], '://', $_SERVER['HTTP_HOST'], preg_replace('/\?.*/', '', $_SERVER['REQUEST_URI']), '']),
+				concat([$_SERVER['REQUEST_SCHEME'], '://', $_SERVER['HTTP_HOST'], preg_replace('/\?.*/', '', $_SERVER['REQUEST_URI']), '?ip=', $_SERVER['REMOTE_ADDR'], '']),
+			],
 		]
 	);
 	exit();
