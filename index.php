@@ -133,6 +133,7 @@ function main(){
 			'urls' => [
 				'github_url' => 'https://github.com/n138-kz/isJP',
 				'git_url' => 'git@github.com:n138-kz/isJP.git',
+				'database_url' => 'https://ipv4.fetus.jp/jp.txt',
 			],
 			'usage' => [
 				concat([$_SERVER['REQUEST_SCHEME'], '://', $_SERVER['HTTP_HOST'], preg_replace('/\?.*/', '', $_SERVER['REQUEST_URI']), '']),
