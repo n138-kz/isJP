@@ -101,7 +101,7 @@ function isJP($reqip){
 		}
 	}
 
-	return [FALSE, ''];
+	return ['result'=>FALSE, 'detail'=>''];
 }
 
 function concat($arr){
@@ -143,3 +143,4 @@ function main(){
 	exit();
 }
 main();
+
