@@ -1,7 +1,10 @@
 <?php
 session_start();
 date_default_timezone_set('Asia/Tokyo');
-header('content-type: application/json');
+header('Content-Type: application/json; charset=UTF-8');
+header('Access-Control-Allow-Origin: *');
+header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
+header("Access-Control-Allow-Headers: Content-Type, Content-Length, Accept-Encoding, Origin, Accept, Access-Control-Allow-Headers, Authorization, X-Requested-With");
 
 function is_included_ipv4_addresses($range, $remote_ip){
 	/**
