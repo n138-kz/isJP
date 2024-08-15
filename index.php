@@ -144,7 +144,7 @@ function main(){
 				concat([$_SERVER['REQUEST_SCHEME'], '://', $_SERVER['HTTP_HOST'], preg_replace('/\?.*/', '', $_SERVER['REQUEST_URI']), '?ip=', $_SERVER['REMOTE_ADDR'], '']),
 			],
 		]
-	);
+	, JSON_PRETTY_PRINT | JSON_INVALID_UTF8_IGNORE | JSON_UNESCAPED_SLASHES);
 	exit();
 }
 main();
