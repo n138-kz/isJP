@@ -40,6 +40,13 @@ function isJP($reqip){
 		}
 	}
 
+	$ipv4 = ['127.0.0.0/8'];
+	foreach ( $ipv4 as $key => $val ) {
+		if ( is_included_ipv4_addresses( $val, $reqip ) === TRUE ) {
+			return ['result'=>FALSE, 'detail'=>'RFC5735'];
+		}
+	}
+
 	$internalDB = [];
 	/**
 	 * 
