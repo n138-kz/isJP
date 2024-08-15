@@ -47,6 +47,13 @@ function isJP($reqip){
 		}
 	}
 
+	$ipv4 = ['169.254.0.0/16'];
+	foreach ( $ipv4 as $key => $val ) {
+		if ( is_included_ipv4_addresses( $val, $reqip ) === TRUE ) {
+			return ['result'=>FALSE, 'detail'=>'RFC3927'];
+		}
+	}
+
 	$internalDB = [];
 	/**
 	 * 
