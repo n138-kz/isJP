@@ -200,6 +200,7 @@ class IsJP {
 				$this->concat([$_SERVER['REQUEST_SCHEME'], '://', $_SERVER['HTTP_HOST'], preg_replace('/\?.*/', '', $_SERVER['REQUEST_URI']), ''])
 			],
 		];
+		
 		$count=count($this->get_logdb());
 		if($count>$this->config['internal']['api']['ratelimit']){
 			$result['result']['result']=[
