@@ -127,6 +127,10 @@ class IsJP {
 			if( $res === false ){
 				throw new \Exception('SQL Error');
 			}
+			$res = $stm->fetchAll();
+			if( $res === false ){
+				throw new \Exception('SQL Error');
+			}
 			return $res;
 		} catch (\Exception $th) {
 			error_log($th->getMessage());
