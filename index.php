@@ -159,7 +159,7 @@ class IsJP {
 
 	function main(){
 		$count=$this->get_logdb();
-		error_log(var_export($count));
+		error_log($count);
 
 		/* リクエストパラメータ `ip` に値を持ってたらそれに置き換える */
 		$reqip = $_SERVER['REMOTE_ADDR'];
