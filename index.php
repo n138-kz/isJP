@@ -65,7 +65,6 @@ class IsJP {
 			}
 		}
 		$ipv4 = explode( "\n", trim( $ipv4 ) );
-		/* ダウンロードして整形::until */
 	
 		/* リクエストパラメータ `ip` と比較してマッチしたら TRUE 返答返し終了 */
 		foreach ( $ipv4 as $key => $val ) {
