@@ -95,7 +95,7 @@ class IsJP {
 	function put_logdb($reqip){
 		try {
 			$pdo = new PDO( self::PDO_DSN, null, null, self::PDO_OPTION );
-			$stm = $pdo->repare('INSERT INTO isJP VALUES (:timestamp, :uuid, :client, :request);');
+			$stm = $pdo->prepare('INSERT INTO isJP VALUES (:timestamp, :uuid, :client, :request);');
 			$attr = [
 				'timestamp'=>microtime(true),
 				'uuid'=>preg_replace_callback(
