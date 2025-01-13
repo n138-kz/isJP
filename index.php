@@ -162,15 +162,6 @@ class IsJP {
 	}
 
 	function main(){
-		$count=count($this->get_logdb());
-		error_log($count);
-
-		/* リクエストパラメータ `ip` に値を持ってたらそれに置き換える */
-		$reqip = $_SERVER['REMOTE_ADDR'];
-		if ( isset( $_GET['ip'] ) && $_GET['ip'] != '' ) {
-			$reqip = $_GET['ip'];
-		}
-
 		$result = [
 			'meta' => [
 				'version' => 2,
@@ -190,7 +181,10 @@ class IsJP {
 				]
 			],
 			'result' => [
-				'result'=>$this->isJP($reqip),
+				'result'=>{
+					'result'=>null,
+					'detail'=>null,
+				},
 				'request'=>[
 					'request'=>$reqip,
 					'detail'=>gethostbyaddr($reqip),
@@ -207,6 +201,25 @@ class IsJP {
 				$this->concat([$_SERVER['REQUEST_SCHEME'], '://', $_SERVER['HTTP_HOST'], preg_replace('/\?.*/', '', $_SERVER['REQUEST_URI']), '?ip=', $reqip, '']),
 			],
 		];
+		$count=count($this->get_logdb());
+		if($count>600){
+			$result['result']['result']=[
+				'result'=>{
+					'result'=>null,
+					'detail'=>'Reached the API Rate limit. Please refer the documents.',
+				}
+			];
+			http_response_code(429);
+			return json_encode( $result, self::FLAG_JSON_ENCODE);
+		}
+
+		/* リクエストパラメータ `ip` に値を持ってたらそれに置き換える */
+		$reqip = $_SERVER['REMOTE_ADDR'];
+		if ( isset( $_GET['ip'] ) && $_GET['ip'] != '' ) {
+			$reqip = $_GET['ip'];
+		}
+
+		$result['result']['result']=$this->isJP($reqip);
 
 		$this->put_logdb($reqip);
 		return json_encode( $result, self::FLAG_JSON_ENCODE);
