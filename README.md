@@ -49,21 +49,22 @@ GET /isJP/index.php
 ## Database
 
 ```sql
-CREATE TABLE IF NOT EXISTS public.isjp
-(
+CREATE TABLE IF NOT EXISTS isjp (
     "timestamp" double precision NOT NULL,
     uuid text NOT NULL,
     client text NOT NULL,
     request text NOT NULL,
-)
-CREATE OR REPLACE VIEW public.isjp_now
+);
+```
+```sql
+CREATE OR REPLACE VIEW isjp_now
  AS
  SELECT isjp."timestamp",
     isjp.uuid,
     isjp.client,
     isjp.request
    FROM isjp
-  WHERE isjp."timestamp" > EXTRACT(EPOCH FROM CURRENT_TIMESTAMP - interval '60 minute');
+   WHERE isjp."timestamp" > EXTRACT(EPOCH FROM CURRENT_TIMESTAMP - interval '60 minute');
 ```
 
 ## 出力データVersionログ
