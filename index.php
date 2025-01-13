@@ -7,7 +7,6 @@ header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
 header("Access-Control-Allow-Headers: Content-Type, Content-Length, Accept-Encoding, Origin, Accept, Access-Control-Allow-Headers, Authorization, X-Requested-With");
 
 class IsJP {
-
 	function is_included_ipv4_addresses($range, $remote_ip){
 		/**
 		 * IPアドレスが指定した範囲内にあるかどうか判別する
