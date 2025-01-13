@@ -11,11 +11,9 @@ class IsJP {
 		/**
 		 * IPアドレスが指定した範囲内にあるかどうか判別する
 		 * https://qiita.com/ran/items/039706c93a8ff85a011a
-		 * 
 		 * @param {String} range CIDR表記(0.0.0.0/32)
 		 * @param {String} remote_ip
 		 * @return {Boolean} 判別結果
-		 *
 		 */
 		list($accept_ip, $mask) = explode('/', $range);
 		$accept_long = ip2long($accept_ip) >> (32 - $mask);
@@ -26,10 +24,8 @@ class IsJP {
 	function isJP($reqip){
 		/**
 		 * IPアドレス一覧をダウンロードしてコメント行と空白行を削る
-		 * 
 		 * @param {String} reqip
 		 * @return {Boolean} 判別結果
-		 *
 		 */
 	
 		$ipv4 = ['10.0.0.0/8', '172.16.0.0/12', '192.168.0.0/16'];
