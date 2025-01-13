@@ -119,7 +119,7 @@ class IsJP {
 	function get_logdb(){
 		try {
 			$pdo = new PDO( $this->pdo_dsn, null, null, self::PDO_OPTION );
-			$stm = $pdo->prepare('SELECT * FROM isJP WHERE client == :client;');
+			$stm = $pdo->prepare('SELECT * FROM isJP WHERE client = :client;');
 			$attr = [
 				'client'=>$_SERVER['REMOTE_ADDR'],
 			];
