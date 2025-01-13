@@ -70,7 +70,7 @@ class IsJP {
 			}
 		}
 
-		$ipv4 = download_iplist(self::IPV4_FETUS_JP)
+		$ipv4 = download_iplist(self::IPV4_FETUS_JP);
 		foreach ( $ipv4 as $key => $val ) {
 			if ( $this->is_included_ipv4_addresses( $val, $reqip ) === TRUE ) {
 				return ['result'=>TRUE, 'detail'=>'ja_JP'];
