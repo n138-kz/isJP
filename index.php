@@ -21,7 +21,7 @@ class IsJP {
 
 	function loadConfig($fname=null){
 		$fdata=file_get_contents($fname);
-		$config=json_decode($fdata, true, 512, self::FLAG_JSON_DECODE);
+		$this->config=json_decode($fdata, true, 512, self::FLAG_JSON_DECODE);
 	}
 
 	function is_included_ipv4_addresses($range, $remote_ip){
