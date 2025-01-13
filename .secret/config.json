@@ -11,7 +11,8 @@
             }
         ],
         "api": {
-            "ratelimit": 600
+            "ratelimit": 100,
+            "timelimit": "10 minute"
         }
     }
 }
