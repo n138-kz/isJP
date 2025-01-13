@@ -108,8 +108,8 @@ class IsJP {
 			'result' => [
 				'result'=>$this->isJP($reqip),
 				'request'=>[
-					'addr'=>$reqip,
-					'name'=>gethostbyaddr($reqip),
+					'result'=>$reqip,
+					'detail'=>gethostbyaddr($reqip),
 				]
 			],
 			'urls' => [
