@@ -106,11 +106,11 @@ class IsJP {
 				]
 			],
 			'result' => [
-				'result'=>[
-					$this->isJP($reqip),
+				'result'=>$this->isJP($reqip),
+				'request'=>[
+					$reqip,
 					gethostbyname($reqip),
-				],
-				'request'=>$reqip,
+				]
 			],
 			'urls' => [
 				'github_url' => 'https://github.com/n138-kz/isJP',
