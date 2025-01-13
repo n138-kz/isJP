@@ -109,7 +109,7 @@ class IsJP {
 			],
 			'usage' => [
 				$this->concat([$_SERVER['REQUEST_SCHEME'], '://', $_SERVER['HTTP_HOST'], preg_replace('/\?.*/', '', $_SERVER['REQUEST_URI']), '']),
-				$this->concat([$_SERVER['REQUEST_SCHEME'], '://', $_SERVER['HTTP_HOST'], preg_replace('/\?.*/', '', $_SERVER['REQUEST_URI']), '?ip=', $_SERVER['REMOTE_ADDR'], '']),
+				$this->concat([$_SERVER['REQUEST_SCHEME'], '://', $_SERVER['HTTP_HOST'], preg_replace('/\?.*/', '', $_SERVER['REQUEST_URI']), '?ip=', $reqip, '']),
 			],
 		];
 		return json_encode( $result, $this->FLAG_JSON_ENCODE);
