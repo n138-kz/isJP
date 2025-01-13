@@ -208,10 +208,13 @@ class IsJP {
 			'usage' => [
 				$this->concat([$_SERVER['REQUEST_SCHEME'], '://', $_SERVER['HTTP_HOST'], preg_replace('/\?.*/', '', $_SERVER['REQUEST_URI']), ''])
 			],
+			'api' => [
+				'use' => count($this->get_logdb()),
+				'limit' => $this->config['internal']['api']['ratelimit'],
+			],
 		];
 
-		$count=count($this->get_logdb());
-		if($count>$this->config['internal']['api']['ratelimit']){
+		if($result['api']['use']>$this->config['internal']['api']['ratelimit']){
 			$result['result']['result']['detail']='Reached the API Rate limit. Please refer the documents.';
 
 			http_response_code(429);
