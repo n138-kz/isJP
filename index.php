@@ -202,13 +202,9 @@ class IsJP {
 		];
 
 		$count=count($this->get_logdb());
-		error_log($this->config['internal']['api']['ratelimit']);
 		if($count>$this->config['internal']['api']['ratelimit']){
-			$result['result']['result']=[
-				'result'=>[
-					'detail'=>'Reached the API Rate limit. Please refer the documents.',
-				]
-			];
+			$result['result']['result']['result']='detail'=>'Reached the API Rate limit. Please refer the documents.';
+
 			http_response_code(429);
 			return json_encode( $result, self::FLAG_JSON_ENCODE);
 		}
