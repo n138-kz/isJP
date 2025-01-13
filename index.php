@@ -202,7 +202,7 @@ class IsJP {
 			],
 		];
 		$count=count($this->get_logdb());
-		if($count>600){
+		if($count>$this->config['internal']['api']['ratelimit']){
 			$result['result']['result']=[
 				'result'=>{
 					'result'=>null,
