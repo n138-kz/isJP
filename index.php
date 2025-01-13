@@ -203,6 +203,7 @@ class IsJP {
 				'github_url' => 'https://github.com/n138-kz/isJP',
 				'database_url' => [
 					self::IPV4_FETUS_JP,
+					self::IPV4_FETUS_EN,
 				],
 			],
 			'usage' => [
