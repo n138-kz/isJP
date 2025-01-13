@@ -181,10 +181,10 @@ class IsJP {
 				]
 			],
 			'result' => [
-				'result'=>{
+				'result'=>[
 					'result'=>null,
 					'detail'=>null,
-				},
+				],
 				'request'=>[
 					'request'=>$reqip,
 					'detail'=>gethostbyaddr($reqip),
