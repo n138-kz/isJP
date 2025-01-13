@@ -186,8 +186,8 @@ class IsJP {
 					'detail'=>null,
 				],
 				'request'=>[
-					'request'=>$reqip,
-					'detail'=>gethostbyaddr($reqip),
+					'request'=>null,
+					'detail'=>null,
 				]
 			],
 			'documents' => [
@@ -220,6 +220,10 @@ class IsJP {
 		}
 
 		$result['result']['result']=$this->isJP($reqip);
+		$result['result']['request']=[
+			'request'=>$reqip,
+			'detail'=>gethostbyaddr($reqip),
+		];
 
 		$this->put_logdb($reqip);
 		return json_encode( $result, self::FLAG_JSON_ENCODE);
