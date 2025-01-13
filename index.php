@@ -22,35 +22,35 @@ class IsJP {
 		$remote_long = ip2long($remote_ip) >> (32 - $mask);
 		return $accept_long == $remote_long;
 	}
-	
+
 	function isJP($reqip){
 		/**
 		 * IPアドレス一覧をダウンロードしてコメント行と空白行を削る
 		 * @param {String} reqip
 		 * @return {Boolean} 判別結果
 		 */
-	
+
 		$ipv4 = ['10.0.0.0/8', '172.16.0.0/12', '192.168.0.0/16'];
 		foreach ( $ipv4 as $key => $val ) {
 			if ( $this->is_included_ipv4_addresses( $val, $reqip ) === TRUE ) {
 				return ['result'=>FALSE, 'detail'=>'RFC1918'];
 			}
 		}
-	
+
 		$ipv4 = ['127.0.0.0/8'];
 		foreach ( $ipv4 as $key => $val ) {
 			if ( $this->is_included_ipv4_addresses( $val, $reqip ) === TRUE ) {
 				return ['result'=>FALSE, 'detail'=>'RFC5735'];
 			}
 		}
-	
+
 		$ipv4 = ['169.254.0.0/16'];
 		foreach ( $ipv4 as $key => $val ) {
 			if ( $this->is_included_ipv4_addresses( $val, $reqip ) === TRUE ) {
 				return ['result'=>FALSE, 'detail'=>'RFC3927'];
 			}
 		}
-	
+
 		/* ダウンロードして整形 */
 		$ipv4_raw = file(self::IPV4_FETUS_JP);
 		$ipv4 = '';
@@ -60,34 +60,34 @@ class IsJP {
 			if( empty( $val ) || preg_match( '/^#/', $val ) ){
 				$val = NULL;
 			}
-	
+
 			if( ! is_null( $val ) ){
 				$ipv4 .= $val . PHP_EOL;
 			}
 		}
 		$ipv4 = explode( "\n", trim( $ipv4 ) );
-	
+
 		/* リクエストパラメータ `ip` と比較してマッチしたら TRUE 返答返し終了 */
 		foreach ( $ipv4 as $key => $val ) {
 			if ( $this->is_included_ipv4_addresses( $val, $reqip ) === TRUE ) {
 				return ['result'=>TRUE, 'detail'=>'ja_JP'];
 			}
 		}
-	
+
 		return ['result'=>FALSE, 'detail'=>''];
 	}
-	
+
 	function concat($arr){
 		return implode( '', $arr );
 	}
-	
+
 	function main(){
 		/* リクエストパラメータ `ip` に値を持ってたらそれに置き換える */
 		$reqip = $_SERVER['REMOTE_ADDR'];
 		if ( isset( $_GET['ip'] ) && $_GET['ip'] != '' ) {
 			$reqip = $_GET['ip'];
 		}
-		
+
 		$result = [
 			'meta' => [
 				'version' => 2,
