@@ -19,6 +19,10 @@ class IsJP {
 	public $config = [];
 	public $pdo_dsn = 'sqlite::memory:';
 
+	function __construct(){
+		$this->loadConfig(__DIR__.'.secret/config.json');
+	}
+
 	function loadConfig($fname=null){
 		$fdata=file_get_contents($fname);
 		$this->config=json_decode($fdata, true, 512, self::FLAG_JSON_DECODE);
