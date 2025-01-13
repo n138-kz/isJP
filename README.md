@@ -57,7 +57,7 @@ CREATE TABLE IF NOT EXISTS isjp (
 );
 ```
 ```sql
-CREATE OR REPLACE VIEW isjp_now
+CREATE OR REPLACE VIEW isjp_in60min
  AS
  SELECT isjp."timestamp",
     isjp.uuid,
