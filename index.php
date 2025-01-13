@@ -116,6 +116,23 @@ class IsJP {
 		return implode( '', $arr );
 	}
 
+	function get_logdb(){
+		try {
+			$pdo = new PDO( $this->pdo_dsn, null, null, self::PDO_OPTION );
+			$stm = $pdo->prepare('SELECT * FROM isJP WHERE client == :client;');
+			$attr = [
+				'client'=>$_SERVER['REMOTE_ADDR'],
+			];
+			$res = $stm->execute($attr);
+			if( $res === false ){
+				throw new \Exception('SQL Error');
+			}
+			return $res;
+		} catch (\Exception $th) {
+			error_log($th->getMessage());
+		}
+	}
+
 	function put_logdb($reqip){
 		try {
 			$pdo = new PDO( $this->pdo_dsn, null, null, self::PDO_OPTION );
