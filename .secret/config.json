@@ -1,0 +1,17 @@
+{
+    "internal": {
+        "databases": [
+            {
+                "host": "127.0.0.1",
+                "port": "5432",
+                "schema": "pgsql",
+                "user": "postgres",
+                "password": "",
+                "database": "postgres"
+            }
+        ],
+        "api": {
+            "ratelimit": 600
+        }
+    }
+}
