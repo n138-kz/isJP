@@ -77,7 +77,7 @@ function isJP($reqip){
 	} elseif ( $internalDB['mode'] == 'text' ) {
 		/* InternalDB::textfile */
 		$internalDB['fname'] = 'jp.txt';
-		if (file_exists($$internalDB['fname'])) {
+		if (file_exists($internalDB['fname'])) {
 			$internalDB['mtime'] = filemtime($internalDB['fname']);
 			$internalDB['older'] = FALSE;
 			$internalDB['older'] = ( time() - $internalDB['mtime'] ) >= ( 3660 * 18 );
