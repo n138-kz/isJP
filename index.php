@@ -31,10 +31,8 @@ class IsJP {
 		 * @return {Boolean} 判別結果
 		 *
 		 */
-		$ipv4_raw = '';
-		$ipv4 = ['10.0.0.0/8', '172.16.0.0/12', '192.168.0.0/16'];
 	
-		/* リクエストパラメータ `ip` と比較してマッチしたら TRUE 返答返し終了 */
+		$ipv4 = ['10.0.0.0/8', '172.16.0.0/12', '192.168.0.0/16'];
 		foreach ( $ipv4 as $key => $val ) {
 			if ( $this->is_included_ipv4_addresses( $val, $reqip ) === TRUE ) {
 				return ['result'=>FALSE, 'detail'=>'RFC1918'];
