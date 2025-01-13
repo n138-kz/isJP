@@ -92,6 +92,29 @@ class IsJP {
 		return implode( '', $arr );
 	}
 
+	function put_logdb($reqip){
+		try {
+			$pdo = new PDO( self::PDO_DSN, null, null, self::PDO_OPTION );
+			$stm->repare('INSERT INTO isJP VALUES (:timestamp, :uuid, :client, :request);');
+			$attr = [
+				'timestamp'=>microtime(true),
+				'uuid'=>preg_replace_callback(
+					'/x|y/',
+					function($m) {
+						return dechex($m[0] === 'x' ? random_int(0, 15) : random_int(8, 11));
+					},
+					'xxxxxxxx_xxxx_4xxx_yxxx_xxxxxxxxxxxx'
+				),
+				'client'=>$_SERVER['REMOTE_ADDR'],
+				'request'=>$reqip,
+			];
+			if(! $stm->execute($attr)){
+				throw new \Exception('SQL Error');
+			}
+		} catch (\Exception $th) {
+		}
+	}
+
 	function main(){
 		/* リクエストパラメータ `ip` に値を持ってたらそれに置き換える */
 		$reqip = $_SERVER['REMOTE_ADDR'];
