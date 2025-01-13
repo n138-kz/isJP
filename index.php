@@ -202,6 +202,7 @@ class IsJP {
 		];
 
 		$count=count($this->get_logdb());
+		error_log($this->config['internal']['api']['ratelimit']);
 		if($count>$this->config['internal']['api']['ratelimit']){
 			$result['result']['result']=[
 				'result'=>[
