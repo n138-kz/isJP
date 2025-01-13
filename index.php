@@ -9,6 +9,14 @@ header("Access-Control-Allow-Headers: Content-Type, Content-Length, Accept-Encod
 class IsJP {
 	public const FLAG_JSON_ENCODE = JSON_PRETTY_PRINT | JSON_INVALID_UTF8_IGNORE | JSON_UNESCAPED_SLASHES;
 	public const IPV4_FETUS_JP = 'https://ipv4.fetus.jp/jp.txt';
+	public const PDO_DSN = 'sqlite::memory:';
+	public const PDO_OPTION = [
+		PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+		PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+		PDO::ATTR_EMULATE_PREPARES => true,
+		PDO::ATTR_PERSISTENT => true,
+	];
+
 	function is_included_ipv4_addresses($range, $remote_ip){
 		/**
 		 * IPアドレスが指定した範囲内にあるかどうか判別する
@@ -127,6 +135,8 @@ class IsJP {
 				$this->concat([$_SERVER['REQUEST_SCHEME'], '://', $_SERVER['HTTP_HOST'], preg_replace('/\?.*/', '', $_SERVER['REQUEST_URI']), '?ip=', $reqip, '']),
 			],
 		];
+
+		$this->put_logdb($reqip);
 		return json_encode( $result, self::FLAG_JSON_ENCODE);
 	}
 }
