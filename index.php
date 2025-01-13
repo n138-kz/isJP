@@ -87,32 +87,31 @@ class IsJP {
 			$reqip = $_GET['ip'];
 		}
 		
-		echo json_encode(
-			[
-				'meta' => [
-					'version' => 2,
-					'runtime_hash' => md5(md5_file(__FILE__, TRUE)),
-					'runtime_version' => dechex(filemtime(__FILE__)),
-					'issued_at'=>[
-						'timestamp'=>time(),
-						'description'=>date('Y/m/d H:i:s T')
-					]
-				],
-				'result' => [
-					'result'=>$this->isJP($reqip),
-					'request'=>$reqip,
-				],
-				'urls' => [
-					'github_url' => 'https://github.com/n138-kz/isJP',
-					'git_url' => 'git@github.com:n138-kz/isJP.git',
-					'database_url' => 'https://ipv4.fetus.jp/jp.txt',
-				],
-				'usage' => [
-					$this->concat([$_SERVER['REQUEST_SCHEME'], '://', $_SERVER['HTTP_HOST'], preg_replace('/\?.*/', '', $_SERVER['REQUEST_URI']), '']),
-					$this->concat([$_SERVER['REQUEST_SCHEME'], '://', $_SERVER['HTTP_HOST'], preg_replace('/\?.*/', '', $_SERVER['REQUEST_URI']), '?ip=', $_SERVER['REMOTE_ADDR'], '']),
-				],
-			]
-		, JSON_PRETTY_PRINT | JSON_INVALID_UTF8_IGNORE | JSON_UNESCAPED_SLASHES);
+		$result = [
+			'meta' => [
+				'version' => 2,
+				'runtime_hash' => md5(md5_file(__FILE__, TRUE)),
+				'runtime_version' => dechex(filemtime(__FILE__)),
+				'issued_at'=>[
+					'timestamp'=>time(),
+					'description'=>date('Y/m/d H:i:s T')
+				]
+			],
+			'result' => [
+				'result'=>$this->isJP($reqip),
+				'request'=>$reqip,
+			],
+			'urls' => [
+				'github_url' => 'https://github.com/n138-kz/isJP',
+				'git_url' => 'git@github.com:n138-kz/isJP.git',
+				'database_url' => 'https://ipv4.fetus.jp/jp.txt',
+			],
+			'usage' => [
+				$this->concat([$_SERVER['REQUEST_SCHEME'], '://', $_SERVER['HTTP_HOST'], preg_replace('/\?.*/', '', $_SERVER['REQUEST_URI']), '']),
+				$this->concat([$_SERVER['REQUEST_SCHEME'], '://', $_SERVER['HTTP_HOST'], preg_replace('/\?.*/', '', $_SERVER['REQUEST_URI']), '?ip=', $_SERVER['REMOTE_ADDR'], '']),
+			],
+		];
+		echo json_encode( $result, JSON_PRETTY_PRINT | JSON_INVALID_UTF8_IGNORE | JSON_UNESCAPED_SLASHES);
 		exit();
 	}
 }
