@@ -20,7 +20,7 @@ class IsJP {
 	public $pdo_dsn = 'sqlite::memory:';
 
 	function __construct(){
-		$this->loadConfig(__DIR__.'.secret/config.json');
+		$this->loadConfig(__DIR__.'/.secret/config.json');
 	}
 
 	function loadConfig($fname=null){
