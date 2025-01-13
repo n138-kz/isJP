@@ -102,6 +102,7 @@ class IsJP {
 					'timestamp'=>time(),
 					'description'=>date('Y/m/d H:i:s T'),
 					'timezone'=>date_default_timezone_get(),
+					'diffgmt'=>date('O'),
 				]
 			],
 			'result' => [
