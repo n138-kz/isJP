@@ -197,8 +197,7 @@ class IsJP {
 				],
 			],
 			'usage' => [
-				$this->concat([$_SERVER['REQUEST_SCHEME'], '://', $_SERVER['HTTP_HOST'], preg_replace('/\?.*/', '', $_SERVER['REQUEST_URI']), '']),
-				$this->concat([$_SERVER['REQUEST_SCHEME'], '://', $_SERVER['HTTP_HOST'], preg_replace('/\?.*/', '', $_SERVER['REQUEST_URI']), '?ip=', $reqip, '']),
+				$this->concat([$_SERVER['REQUEST_SCHEME'], '://', $_SERVER['HTTP_HOST'], preg_replace('/\?.*/', '', $_SERVER['REQUEST_URI']), ''])
 			],
 		];
 		$count=count($this->get_logdb());
@@ -224,6 +223,9 @@ class IsJP {
 			'request'=>$reqip,
 			'detail'=>gethostbyaddr($reqip),
 		];
+		array_push($result['usage'],
+			$this->concat([$_SERVER['REQUEST_SCHEME'], '://', $_SERVER['HTTP_HOST'], preg_replace('/\?.*/', '', $_SERVER['REQUEST_URI']), '?ip=', $reqip, ''])
+		);
 
 		$this->put_logdb($reqip);
 		return json_encode( $result, self::FLAG_JSON_ENCODE);
