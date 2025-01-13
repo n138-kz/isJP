@@ -63,8 +63,7 @@ class IsJP {
 				$ipv4 .= $val . PHP_EOL;
 			}
 		}
-		$ipv4 = trim( $ipv4 );
-		$ipv4 = explode( "\n", $ipv4 );
+		$ipv4 = explode( "\n", trim( $ipv4 ) );
 		/* ダウンロードして整形::until */
 	
 		/* リクエストパラメータ `ip` と比較してマッチしたら TRUE 返答返し終了 */
