@@ -112,7 +112,7 @@ class IsJP {
 					'detail'=>gethostbyaddr($reqip),
 				]
 			],
-			'urls' => [
+			'documents' => [
 				'github_url' => 'https://github.com/n138-kz/isJP',
 				'database_url' => 'https://ipv4.fetus.jp/jp.txt',
 			],
