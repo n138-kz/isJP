@@ -16,6 +16,7 @@ class IsJP {
 		PDO::ATTR_EMULATE_PREPARES => true,
 		PDO::ATTR_PERSISTENT => true,
 	];
+	public $config = [];
 	public $pdo_dsn = 'sqlite::memory:';
 
 	function is_included_ipv4_addresses($range, $remote_ip){
