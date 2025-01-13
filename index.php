@@ -90,12 +90,14 @@ class IsJP {
 		$result = [
 			'meta' => [
 				'version' => 2,
-				'runtime_hash' => [
-					'md5' => md5(md5_file(__FILE__, TRUE)),
-					'sha1' => sha1(sha1_file(__FILE__, TRUE)),
-					'sha256' => hash('sha256', hash_file('sha256', __FILE__, TRUE)),
+				'runtime' => [
+					'hash' => [
+						'md5' => md5(md5_file(__FILE__, TRUE)),
+						'sha1' => sha1(sha1_file(__FILE__, TRUE)),
+						'sha256' => hash('sha256', hash_file('sha256', __FILE__, TRUE)),
+					],
+					'version' => dechex(filemtime(__FILE__)),
 				],
-				'runtime_version' => dechex(filemtime(__FILE__)),
 				'issued_at'=>[
 					'timestamp'=>time(),
 					'description'=>date('Y/m/d H:i:s T'),
