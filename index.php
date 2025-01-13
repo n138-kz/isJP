@@ -52,7 +52,7 @@ class IsJP {
 		}
 	
 		/* ダウンロードして整形 */
-		$ipv4_raw = file($this->IPV4_FETUS_JP);
+		$ipv4_raw = file(self::IPV4_FETUS_JP);
 		$ipv4 = '';
 		foreach( $ipv4_raw as $key => $val ){
 			$val = trim( $val );
@@ -116,7 +116,7 @@ class IsJP {
 			'documents' => [
 				'github_url' => 'https://github.com/n138-kz/isJP',
 				'database_url' => [
-					$this->IPV4_FETUS_JP,
+					self::IPV4_FETUS_JP,
 				],
 			],
 			'usage' => [
@@ -124,7 +124,7 @@ class IsJP {
 				$this->concat([$_SERVER['REQUEST_SCHEME'], '://', $_SERVER['HTTP_HOST'], preg_replace('/\?.*/', '', $_SERVER['REQUEST_URI']), '?ip=', $reqip, '']),
 			],
 		];
-		return json_encode( $result, $this->FLAG_JSON_ENCODE);
+		return json_encode( $result, self::FLAG_JSON_ENCODE);
 	}
 }
 
