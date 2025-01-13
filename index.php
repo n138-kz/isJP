@@ -7,6 +7,7 @@ header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
 header("Access-Control-Allow-Headers: Content-Type, Content-Length, Accept-Encoding, Origin, Accept, Access-Control-Allow-Headers, Authorization, X-Requested-With");
 
 class IsJP {
+	public const FLAG_JSON_ENCODE = JSON_PRETTY_PRINT | JSON_INVALID_UTF8_IGNORE | JSON_UNESCAPED_SLASHES;
 	function is_included_ipv4_addresses($range, $remote_ip){
 		/**
 		 * IPアドレスが指定した範囲内にあるかどうか判別する
@@ -111,10 +112,9 @@ class IsJP {
 				$this->concat([$_SERVER['REQUEST_SCHEME'], '://', $_SERVER['HTTP_HOST'], preg_replace('/\?.*/', '', $_SERVER['REQUEST_URI']), '?ip=', $_SERVER['REMOTE_ADDR'], '']),
 			],
 		];
-		echo json_encode( $result, JSON_PRETTY_PRINT | JSON_INVALID_UTF8_IGNORE | JSON_UNESCAPED_SLASHES);
-		exit();
+		return json_encode( $result, $this->FLAG_JSON_ENCODE);
 	}
 }
 
 $api = new isJP();
-$api->main();
+echo $api->main();
