@@ -9,7 +9,7 @@ header("Access-Control-Allow-Headers: Content-Type, Content-Length, Accept-Encod
 class IsJP {
 	public const FLAG_JSON_ENCODE = JSON_PRETTY_PRINT | JSON_INVALID_UTF8_IGNORE | JSON_UNESCAPED_SLASHES;
 	public const IPV4_FETUS_JP = 'https://ipv4.fetus.jp/jp.txt';
-	public const PDO_DSN = 'sqlite:isjp.db';
+	public const PDO_DSN = 'sqlite::memory:';
 	public const PDO_OPTION = [
 		PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
 		PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
