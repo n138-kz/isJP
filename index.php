@@ -10,6 +10,7 @@ class IsJP {
 	public const FLAG_JSON_ENCODE = JSON_PRETTY_PRINT | JSON_INVALID_UTF8_IGNORE | JSON_UNESCAPED_SLASHES;
 	public const FLAG_JSON_DECODE = JSON_INVALID_UTF8_IGNORE | JSON_UNESCAPED_SLASHES | JSON_INVALID_UTF8_IGNORE | JSON_INVALID_UTF8_SUBSTITUTE | JSON_OBJECT_AS_ARRAY | JSON_THROW_ON_ERROR;
 	public const IPV4_FETUS_JP = 'https://ipv4.fetus.jp/jp.txt';
+	public const IPV4_FETUS_EN = 'https://ipv4.fetus.jp/en.txt';
 	public const PDO_OPTION = [
 		PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
 		PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
@@ -106,6 +107,13 @@ class IsJP {
 		foreach ( $ipv4 as $key => $val ) {
 			if ( $this->is_included_ipv4_addresses( $val, $reqip ) === TRUE ) {
 				return ['result'=>TRUE, 'detail'=>'ja_JP'];
+			}
+		}
+
+		$ipv4 = $this->download_iplist(self::IPV4_FETUS_EN);
+		foreach ( $ipv4 as $key => $val ) {
+			if ( $this->is_included_ipv4_addresses( $val, $reqip ) === TRUE ) {
+				return ['result'=>FALSE, 'detail'=>'en_US'];
 			}
 		}
 
