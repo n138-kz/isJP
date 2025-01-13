@@ -92,7 +92,7 @@ class IsJP {
 			'meta' => [
 				'version' => 2,
 				'runtime_hash' => [
-					'md5' => md5(md5_file(__FILE__, TRUE))
+					'md5' => md5(md5_file(__FILE__, TRUE)),
 				],
 				'runtime_version' => dechex(filemtime(__FILE__)),
 				'issued_at'=>[
