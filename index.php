@@ -76,7 +76,7 @@ class IsJP {
 	
 		/* リクエストパラメータ `ip` と比較してマッチしたら TRUE 返答返し終了 */
 		foreach ( $ipv4 as $key => $val ) {
-			if ( is_included_ipv4_addresses( $val, $reqip ) === TRUE ) {
+			if ( $this->is_included_ipv4_addresses( $val, $reqip ) === TRUE ) {
 				return ['result'=>TRUE, 'detail'=>'ja_JP'];
 			}
 		}
