@@ -130,7 +130,7 @@ class IsJP {
 			$stm = $pdo->prepare('SELECT * FROM isJP WHERE client = :client and timestamp > EXTRACT(EPOCH FROM CURRENT_TIMESTAMP - interval :adjusttime);');
 			$attr = [
 				'client'=>$_SERVER['REMOTE_ADDR'],
-				'adjusttime'=>'60 minute',
+				'adjusttime'=>'10 minute',
 			];
 			$res = $stm->execute($attr);
 			if( $res === false ){
