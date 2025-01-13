@@ -8,6 +8,7 @@ header("Access-Control-Allow-Headers: Content-Type, Content-Length, Accept-Encod
 
 class IsJP {
 	public const FLAG_JSON_ENCODE = JSON_PRETTY_PRINT | JSON_INVALID_UTF8_IGNORE | JSON_UNESCAPED_SLASHES;
+	public const IPV4_FETUS_JP = 'https://ipv4.fetus.jp/jp.txt';
 	function is_included_ipv4_addresses($range, $remote_ip){
 		/**
 		 * IPアドレスが指定した範囲内にあるかどうか判別する
@@ -51,7 +52,7 @@ class IsJP {
 		}
 	
 		/* ダウンロードして整形 */
-		$ipv4_raw = file('https://ipv4.fetus.jp/jp.txt');
+		$ipv4_raw = file($this->IPV4_FETUS_JP);
 		$ipv4 = '';
 		foreach( $ipv4_raw as $key => $val ){
 			$val = trim( $val );
@@ -114,7 +115,9 @@ class IsJP {
 			],
 			'documents' => [
 				'github_url' => 'https://github.com/n138-kz/isJP',
-				'database_url' => 'https://ipv4.fetus.jp/jp.txt',
+				'database_url' => [
+					$this->IPV4_FETUS_JP,
+				],
 			],
 			'usage' => [
 				$this->concat([$_SERVER['REQUEST_SCHEME'], '://', $_SERVER['HTTP_HOST'], preg_replace('/\?.*/', '', $_SERVER['REQUEST_URI']), '']),
