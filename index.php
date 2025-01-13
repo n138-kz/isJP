@@ -21,11 +21,24 @@ class IsJP {
 
 	function __construct(){
 		$this->loadConfig(__DIR__.'/.secret/config.json');
+		$this->setDatabase_option();
 	}
 
 	function loadConfig($fname=null){
 		$fdata=file_get_contents($fname);
 		$this->config=json_decode($fdata, true, 512, self::FLAG_JSON_DECODE);
+	}
+
+	function setDatabase_option(){
+		$this->pdo_dsn = '';
+		$this->pdo_dsn += $this->config['internal']['databases'][0]['schema'];
+		$this->pdo_dsn += ':';
+		$this->pdo_dsn += 'host=' . $this->config['internal']['databases'][0]['host'] . ';';
+		$this->pdo_dsn += 'port=' . $this->config['internal']['databases'][0]['port'] . ';';
+		$this->pdo_dsn += 'dbname=' . $this->config['internal']['databases'][0]['database'] . ';';
+		$this->pdo_dsn += 'user=' . $this->config['internal']['databases'][0]['user'] . ';';
+		$this->pdo_dsn += 'password=' . $this->config['internal']['databases'][0]['password'] . ';';
+		$this->pdo_dsn += '';
 	}
 
 	function is_included_ipv4_addresses($range, $remote_ip){
