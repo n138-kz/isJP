@@ -119,9 +119,10 @@ class IsJP {
 	function get_logdb(){
 		try {
 			$pdo = new PDO( $this->pdo_dsn, null, null, self::PDO_OPTION );
-			$stm = $pdo->prepare('SELECT * FROM isJP WHERE client = :client;');
+			$stm = $pdo->prepare('SELECT * FROM isJP WHERE client = :client and timestamp < EXTRACT(EPOCH FROM CURRENT_TIMESTAMP - interval :adjusttime;');
 			$attr = [
 				'client'=>$_SERVER['REMOTE_ADDR'],
+				'adjusttime'=>'60 minute',
 			];
 			$res = $stm->execute($attr);
 			if( $res === false ){
