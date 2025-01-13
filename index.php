@@ -56,46 +56,6 @@ class IsJP {
 			}
 		}
 	
-		$internalDB = [];
-		/**
-		 * 
-		 * @flow InternalDB::textfile
-		 * - <キャッシュファイル>が存在するか→[a0]
-		 * →[a0]が真の時、mtimeを取得→[a1]
-		 *    →[a1]の時間がと今の時間を比較→[a2]
-		 *    →[a2]の時間が18時間(3/4日)以上空いているか→[a3]
-		 *    →[a3]が真の時、<神様データ>からデータダウンロードする→[a4]
-		 *       →[a4]を整形し、<キャッシュファイル>に保存。→[a5]
-		 *       →[a5]を保存できたか→[a6]
-		 *       →比較元を<神様データ>とする。
-		 *    →[a3]が偽の時、比較元を<キャッシュファイル>とする。
-		 * →[a0]が偽の時、<神様データ>からデータダウンロードする→[a4] 
-		 *    →[a4]を整形し、<キャッシュファイル>に保存。→[a5]
-		 *    →比較元を<神様データ>とする。
-		 * 
-		 */
-		$internalDB['mode'] = 'text';
-		if (FALSE) {
-		} elseif ( $internalDB['mode'] == 'text' ) {
-			/* InternalDB::textfile */
-			$internalDB['fname'] = 'jp.txt';
-			if (file_exists($internalDB['fname'])) {
-				$internalDB['mtime'] = filemtime($internalDB['fname']);
-				$internalDB['older'] = FALSE;
-				$internalDB['older'] = ( time() - $internalDB['mtime'] ) >= ( 3660 * 18 );
-	
-				if ($internalDB['older']) {
-					$ipv4_raw = file_get_contents('https://ipv4.fetus.jp/jp.txt');
-					$internalDB['saved'] = file_put_contents($internalDB['fname'], $ipv4_raw);
-				} else {
-					$ipv4_raw = file_get_contents($internalDB['fname']);
-				}
-			} else {
-				$ipv4_raw = file_get_contents('https://ipv4.fetus.jp/jp.txt');
-				$internalDB['saved'] = file_put_contents($internalDB['fname'], $ipv4_raw);
-			}
-		}
-	
 		/* ダウンロードして整形 */
 		$ipv4_raw = file('https://ipv4.fetus.jp/jp.txt');
 		$ipv4 = '';
