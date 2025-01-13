@@ -23,6 +23,25 @@ class IsJP {
 		return $accept_long == $remote_long;
 	}
 
+	function download_iplist($dbfile){
+		/* ダウンロードして整形 */
+		$ipv4_raw = file($dbfile);
+		$ipv4 = '';
+		foreach( $ipv4_raw as $key => $val ){
+			$val = trim( $val );
+			$val = str_replace( array("\r\n", "\r", "\n"), '', $val );
+			if( empty( $val ) || preg_match( '/^#/', $val ) ){
+				$val = NULL;
+			}
+
+			if( ! is_null( $val ) ){
+				$ipv4 .= $val . PHP_EOL;
+			}
+		}
+		$ipv4 = explode( "\n", trim( $ipv4 ) );
+		return $ipv4;
+	}
+
 	function isJP($reqip){
 		/**
 		 * IPアドレス一覧をダウンロードしてコメント行と空白行を削る
@@ -51,23 +70,7 @@ class IsJP {
 			}
 		}
 
-		/* ダウンロードして整形 */
-		$ipv4_raw = file(self::IPV4_FETUS_JP);
-		$ipv4 = '';
-		foreach( $ipv4_raw as $key => $val ){
-			$val = trim( $val );
-			$val = str_replace( array("\r\n", "\r", "\n"), '', $val );
-			if( empty( $val ) || preg_match( '/^#/', $val ) ){
-				$val = NULL;
-			}
-
-			if( ! is_null( $val ) ){
-				$ipv4 .= $val . PHP_EOL;
-			}
-		}
-		$ipv4 = explode( "\n", trim( $ipv4 ) );
-
-		/* リクエストパラメータ `ip` と比較してマッチしたら TRUE 返答返し終了 */
+		$ipv4 = download_iplist(self::IPV4_FETUS_JP)
 		foreach ( $ipv4 as $key => $val ) {
 			if ( $this->is_included_ipv4_addresses( $val, $reqip ) === TRUE ) {
 				return ['result'=>TRUE, 'detail'=>'ja_JP'];
