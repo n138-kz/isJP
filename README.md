@@ -49,6 +49,15 @@ GET /isJP/index.php
 ## Database
 
 ```sql
+CREATE TABLE IF NOT EXISTS isjp (
+    "timestamp" double precision NOT NULL,
+    uuid TEXT NOT NULL,
+    client TEXT NOT NULL,
+    request TEXT NOT NULL,
+    userid TEXT
+);
+```
+```sql
 CREATE TABLE IF NOT EXISTS isjp_authorizeduser (
     "timestamp" double precision NOT NULL,
     uuid TEXT NOT NULL,
@@ -59,15 +68,6 @@ CREATE TABLE IF NOT EXISTS isjp_authorizeduser (
     g_given_name TEXT DEFAULT NULL,
     g_family_name TEXT DEFAULT NULL,
     g_locale TEXT DEFAULT NULL
-);
-```
-```sql
-CREATE TABLE IF NOT EXISTS isjp (
-    "timestamp" double precision NOT NULL,
-    uuid TEXT NOT NULL,
-    client TEXT NOT NULL,
-    request TEXT NOT NULL,
-    userid TEXT
 );
 ```
 ```sql
