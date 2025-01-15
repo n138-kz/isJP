@@ -144,6 +144,7 @@ class IsJP {
 			return $res;
 		} catch (\Exception $th) {
 			error_log($th->getMessage());
+			return [];
 		}
 	}
 
