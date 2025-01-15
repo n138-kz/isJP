@@ -148,7 +148,7 @@ class IsJP {
 		}
 	}
 
-	function put_logdb($reqip){
+	function put_logdb($reqip,$http_userid=null){
 		try {
 			$pdo = new PDO( $this->pdo_dsn, null, null, self::PDO_OPTION );
 			$stm = $pdo->prepare('INSERT INTO ' . $this->config['internal']['databases'][0]['tableprefix'] . ' VALUES (:timestamp, :uuid, :client, :request);');
