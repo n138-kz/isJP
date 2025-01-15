@@ -9,6 +9,7 @@ header("Access-Control-Allow-Headers: Content-Type, Content-Length, Accept-Encod
 class IsJP {
 	public const FLAG_JSON_ENCODE = JSON_PRETTY_PRINT | JSON_INVALID_UTF8_IGNORE | JSON_UNESCAPED_SLASHES;
 	public const FLAG_JSON_DECODE = JSON_INVALID_UTF8_IGNORE | JSON_UNESCAPED_SLASHES | JSON_INVALID_UTF8_IGNORE | JSON_INVALID_UTF8_SUBSTITUTE | JSON_OBJECT_AS_ARRAY | JSON_THROW_ON_ERROR;
+	public const COMPOSER_FILE = './vendor/autoload.php';
 	public const IPV4_FETUS_JP = 'https://ipv4.fetus.jp/jp.txt';
 	public const IPV4_FETUS_EN = 'https://ipv4.fetus.jp/us.txt';
 	public const PDO_OPTION = [
