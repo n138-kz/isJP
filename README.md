@@ -53,18 +53,18 @@ CREATE TABLE IF NOT EXISTS isjp (
     "timestamp" double precision NOT NULL,
     uuid text NOT NULL,
     client text NOT NULL,
-    request text NOT NULL,
+    request text NOT NULL
 );
 ```
 ```sql
-CREATE OR REPLACE VIEW isjp_in60min
+CREATE OR REPLACE VIEW isjp_in10min
  AS
- SELECT isjp."timestamp",
-    isjp.uuid,
-    isjp.client,
-    isjp.request
+ SELECT "timestamp",
+    uuid,
+    client,
+    request
    FROM isjp
-   WHERE isjp."timestamp" > EXTRACT(EPOCH FROM CURRENT_TIMESTAMP - interval '60 minute');
+   WHERE "timestamp" > EXTRACT(EPOCH FROM CURRENT_TIMESTAMP - interval '10 minute');
 ```
 
 ## 出力データVersionログ
