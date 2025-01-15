@@ -53,7 +53,8 @@ CREATE TABLE IF NOT EXISTS isjp (
     "timestamp" double precision NOT NULL,
     uuid text NOT NULL,
     client text NOT NULL,
-    request text NOT NULL
+    request text NOT NULL,
+    userid text
 );
 ```
 ```sql
