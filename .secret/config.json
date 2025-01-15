@@ -19,7 +19,7 @@
     "external": {
         "service": {
             "google-apiclient": {
-                "clientid": ""
+                "client-id": ""
             }
         }
     }
