@@ -217,6 +217,16 @@ class IsJP {
 			],
 		];
 
+		$authorized=[
+			'authorized'=>false,
+			'email'=>null,
+			'email_verified'=>false,
+			'name'=>null,
+			'picture'=>null,
+			'given_name'=>null,
+			'family_name'=>null,
+			'locale'=>null,
+		];
 		/* 認証トークンを持っていた場合認証する */
 		if ( isset( $_GET['token'] ) && $_GET['token'] != '' ) {
 			try {
