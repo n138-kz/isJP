@@ -235,6 +235,9 @@ class IsJP {
 					$client = new Google_Client(['client_id' => $this->config['external']['service']['google-apiclient']['client-id']]);
 					$payload = $client->verifyIdToken($_GET['token']);
 					if ($payload && isset($payload['sub']) && isset($payload['email'])) {
+						/* トークン認証...OK */
+						$authorized=['authorized'=>true,];
+						$authorized=array_merge($authorized, $payload);
 					} else {
 						/* トークン認証...FAIL */
 						http_response_code(401);
