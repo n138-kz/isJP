@@ -232,6 +232,10 @@ class IsJP {
 			try {
 				if (file_exists(self::COMPOSER_FILE)) {
 					require_once self::COMPOSER_FILE;
+					$client = new Google_Client(['client_id' => $this->config['external']['service']['google-apiclient']['client-id']]);
+					$payload = $client->verifyIdToken($_GET['token']);
+					if ($payload && isset($payload['sub']) && isset($payload['email'])) {
+					}
 				} else {
 					http_response_code(500);
 					throw new Exception('Not loaded system file(s).');
