@@ -127,7 +127,7 @@ class IsJP {
 	function get_logdb(){
 		try {
 			$pdo = new PDO( $this->pdo_dsn, null, null, self::PDO_OPTION );
-			$stm = $pdo->prepare('SELECT * FROM isJP WHERE client = :client and timestamp > EXTRACT(EPOCH FROM CURRENT_TIMESTAMP - interval :adjusttime);');
+			$stm = $pdo->prepare('SELECT * FROM ' . $this->config['internal']['databases'][0]['tableprefix'] . ' WHERE client = :client and timestamp > EXTRACT(EPOCH FROM CURRENT_TIMESTAMP - interval :adjusttime);');
 			$attr = [
 				'client'=>$_SERVER['REMOTE_ADDR'],
 				'adjusttime'=>$this->config['internal']['api']['timelimit'],
@@ -143,13 +143,14 @@ class IsJP {
 			return $res;
 		} catch (\Exception $th) {
 			error_log($th->getMessage());
+			return [];
 		}
 	}
 
 	function put_logdb($reqip){
 		try {
 			$pdo = new PDO( $this->pdo_dsn, null, null, self::PDO_OPTION );
-			$stm = $pdo->prepare('INSERT INTO isJP VALUES (:timestamp, :uuid, :client, :request);');
+			$stm = $pdo->prepare('INSERT INTO ' . $this->config['internal']['databases'][0]['tableprefix'] . ' VALUES (:timestamp, :uuid, :client, :request);');
 			$attr = [
 				'timestamp'=>microtime(true),
 				'uuid'=>preg_replace_callback(
