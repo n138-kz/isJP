@@ -217,11 +217,15 @@ class IsJP {
 			],
 		];
 
-		if($result['api']['use']>$this->config['internal']['api']['ratelimit']){
-			$result['result']['result']['detail']='Reached the API Rate limit. Please refer the documents.';
-
-			http_response_code(429);
-			return json_encode( $result, self::FLAG_JSON_ENCODE);
+		/* 認証トークンを持っていた場合認証する */
+		if ( isset( $_GET['token'] ) && $_GET['token'] != '' ) {
+		} else {
+			if($result['api']['use']>$this->config['internal']['api']['ratelimit']){
+				$result['result']['result']['detail']='Reached the API Rate limit. Please refer the documents.';
+	
+				http_response_code(429);
+				return json_encode( $result, self::FLAG_JSON_ENCODE);
+			}
 		}
 
 		/* リクエストパラメータ `ip` に値を持ってたらそれに置き換える */
