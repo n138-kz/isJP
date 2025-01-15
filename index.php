@@ -220,6 +220,12 @@ class IsJP {
 		/* 認証トークンを持っていた場合認証する */
 		if ( isset( $_GET['token'] ) && $_GET['token'] != '' ) {
 			try {
+				if (file_exists(self::COMPOSER_FILE)) {
+					require_once self::COMPOSER_FILE;
+				} else {
+					http_response_code(500);
+					throw new Exception('Not loaded system file(s).');
+				}
 			} catch (\Exception $th) {
 				$result['result']['result']['detail']=$th->getMessage();
 				return json_encode( $result, self::FLAG_JSON_ENCODE);
