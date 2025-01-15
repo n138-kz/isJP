@@ -58,6 +58,19 @@ CREATE TABLE IF NOT EXISTS isjp (
 );
 ```
 ```sql
+CREATE TABLE IF NOT EXISTS isjp_authorizeduser (
+    "timestamp" double precision NOT NULL,
+    uuid text NOT NULL,
+    g_userid text NOT NULL UNIQUE,
+    g_email text default null,
+    g_name text default null,
+    g_picture text default null,
+    g_given_name text default null,
+    g_family_name text default null,
+    g_locale text default null
+);
+```
+```sql
 CREATE OR REPLACE VIEW isjp_in10min
  AS
  SELECT "timestamp",
