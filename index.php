@@ -206,6 +206,9 @@ class IsJP {
 					self::IPV4_FETUS_JP,
 					self::IPV4_FETUS_EN,
 				],
+				'reference' => [
+					'https://github.com/n138-kz/isJP',
+				]
 			],
 			'usage' => [
 				$this->concat([$_SERVER['REQUEST_SCHEME'], '://', $_SERVER['HTTP_HOST'], preg_replace('/\?.*/', '', $_SERVER['REQUEST_URI']), ''])
