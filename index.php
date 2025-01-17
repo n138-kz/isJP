@@ -211,7 +211,7 @@ class IsJP {
 				'reference_url' => [
 					'https://github.com/n138-kz/isJP',
 					'https://n138-kz.github.io/sso_google',
-				]
+				],
 			],
 			'usage' => [
 				$this->concat([$_SERVER['REQUEST_SCHEME'], '://', $_SERVER['HTTP_HOST'], preg_replace('/\?.*/', '', $_SERVER['REQUEST_URI']), ''])
