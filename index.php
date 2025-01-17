@@ -208,7 +208,7 @@ class IsJP {
 				],
 				'reference_url' => [
 					'https://github.com/n138-kz/isJP',
-				]
+				],
 			],
 			'usage' => [
 				$this->concat([$_SERVER['REQUEST_SCHEME'], '://', $_SERVER['HTTP_HOST'], preg_replace('/\?.*/', '', $_SERVER['REQUEST_URI']), ''])
