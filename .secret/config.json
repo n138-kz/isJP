@@ -15,5 +15,12 @@
             "ratelimit": 100,
             "timelimit": "10 minute"
         }
+    },
+    "external": {
+        "service": {
+            "google-apiclient": {
+                "client-id": ""
+            }
+        }
     }
 }

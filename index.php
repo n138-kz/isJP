@@ -9,6 +9,7 @@ header("Access-Control-Allow-Headers: Content-Type, Content-Length, Accept-Encod
 class IsJP {
 	public const FLAG_JSON_ENCODE = JSON_PRETTY_PRINT | JSON_INVALID_UTF8_IGNORE | JSON_UNESCAPED_SLASHES;
 	public const FLAG_JSON_DECODE = JSON_INVALID_UTF8_IGNORE | JSON_UNESCAPED_SLASHES | JSON_INVALID_UTF8_IGNORE | JSON_INVALID_UTF8_SUBSTITUTE | JSON_OBJECT_AS_ARRAY | JSON_THROW_ON_ERROR;
+	public const COMPOSER_FILE = './vendor/autoload.php';
 	public const IPV4_FETUS_JP = 'https://ipv4.fetus.jp/jp.txt';
 	public const IPV4_FETUS_EN = 'https://ipv4.fetus.jp/us.txt';
 	public const PDO_OPTION = [
@@ -147,10 +148,10 @@ class IsJP {
 		}
 	}
 
-	function put_logdb($reqip){
+	function put_logdb($reqip,$http_userid=null){
 		try {
 			$pdo = new PDO( $this->pdo_dsn, null, null, self::PDO_OPTION );
-			$stm = $pdo->prepare('INSERT INTO ' . $this->config['internal']['databases'][0]['tableprefix'] . ' VALUES (:timestamp, :uuid, :client, :request);');
+			$stm = $pdo->prepare('INSERT INTO ' . $this->config['internal']['databases'][0]['tableprefix'] . ' VALUES (:timestamp, :uuid, :client, :request, :userid);');
 			$attr = [
 				'timestamp'=>microtime(true),
 				'uuid'=>preg_replace_callback(
@@ -162,6 +163,7 @@ class IsJP {
 				),
 				'client'=>$_SERVER['REMOTE_ADDR'],
 				'request'=>$reqip,
+				'userid'=>$http_userid,
 			];
 			if(! $stm->execute($attr)){
 				throw new \Exception('SQL Error');
@@ -208,7 +210,8 @@ class IsJP {
 				],
 				'reference_url' => [
 					'https://github.com/n138-kz/isJP',
-				]
+					'https://n138-kz.github.io/sso_google',
+				],
 			],
 			'usage' => [
 				$this->concat([$_SERVER['REQUEST_SCHEME'], '://', $_SERVER['HTTP_HOST'], preg_replace('/\?.*/', '', $_SERVER['REQUEST_URI']), ''])
@@ -219,11 +222,47 @@ class IsJP {
 			],
 		];
 
-		if($result['api']['use']>$this->config['internal']['api']['ratelimit']){
-			$result['result']['result']['detail']='Reached the API Rate limit. Please refer the documents.';
-
-			http_response_code(429);
-			return json_encode( $result, self::FLAG_JSON_ENCODE);
+		$authorized=[
+			'authorized'=>false,
+			'email'=>null,
+			'email_verified'=>false,
+			'name'=>null,
+			'picture'=>null,
+			'given_name'=>null,
+			'family_name'=>null,
+			'locale'=>null,
+		];
+		/* 認証トークンを持っていた場合認証する */
+		if ( isset( $_GET['token'] ) && $_GET['token'] != '' ) {
+			try {
+				if (file_exists(self::COMPOSER_FILE)) {
+					require_once self::COMPOSER_FILE;
+					$client = new Google_Client(['client_id' => $this->config['external']['service']['google-apiclient']['client-id']]);
+					$payload = $client->verifyIdToken($_GET['token']);
+					if ($payload && isset($payload['sub']) && isset($payload['email'])) {
+						/* トークン認証...OK */
+						$authorized=['authorized'=>true,];
+						$authorized=array_merge($authorized, $payload);
+					} else {
+						/* トークン認証...FAIL */
+						http_response_code(401);
+						throw new Exception('Invalid the token.');
+					}
+				} else {
+					http_response_code(500);
+					throw new Exception('Not loaded system file(s).');
+				}
+			} catch (\Exception $th) {
+				$result['result']['result']['detail']=$th->getMessage();
+				return json_encode( $result, self::FLAG_JSON_ENCODE);
+			}
+		} else {
+			if($result['api']['use']>$this->config['internal']['api']['ratelimit']){
+				$result['result']['result']['detail']='Reached the API Rate limit. Please refer the documents.';
+	
+				http_response_code(429);
+				return json_encode( $result, self::FLAG_JSON_ENCODE);
+			}
 		}
 
 		/* リクエストパラメータ `ip` に値を持ってたらそれに置き換える */
