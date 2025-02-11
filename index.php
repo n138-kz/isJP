@@ -205,8 +205,8 @@ class IsJP {
 			'documents' => [
 				'github_url' => 'https://github.com/n138-kz/isJP',
 				'database_url' => [
-					self::IPV4_FETUS_JP,
-					self::IPV4_FETUS_EN,
+					['url'=>self::IPV4_FETUS_JP,'size'=>strlen(file_get_contents(self::IPV4_FETUS_JP))],
+					['url'=>self::IPV4_FETUS_EN,'size'=>strlen(file_get_contents(self::IPV4_FETUS_EN))],
 				],
 				'reference_url' => [
 					'https://github.com/n138-kz/isJP',
