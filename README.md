@@ -72,7 +72,7 @@ CREATE OR REPLACE VIEW isjp_in10min
   ORDER BY isjp."timestamp";;
 ```
 ```sql
-CREATE OR REPLACE VIEW isjp_in10min
+CREATE OR REPLACE VIEW isjp_in60min
   AS
   SELECT isjp."timestamp",
     isjp.uuid,
