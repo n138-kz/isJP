@@ -69,7 +69,7 @@ CREATE OR REPLACE VIEW isjp_in10min
     isjp.isjp
     FROM isjp
   WHERE isjp."timestamp" > EXTRACT(epoch FROM CURRENT_TIMESTAMP - '00:10:00'::interval)::double precision
-  ORDER BY isjp."timestamp";;
+  ORDER BY isjp."timestamp";
 ```
 ```sql
 CREATE OR REPLACE VIEW isjp_in60min
@@ -82,7 +82,7 @@ CREATE OR REPLACE VIEW isjp_in60min
     isjp.isjp
     FROM isjp
   WHERE isjp."timestamp" > EXTRACT(epoch FROM CURRENT_TIMESTAMP - '01:00:00'::interval)::double precision
-  ORDER BY isjp."timestamp";;
+  ORDER BY isjp."timestamp";
 ```
 
 ## 出力データVersionログ
