@@ -9,14 +9,14 @@ header("Access-Control-Allow-Headers: Content-Type, Content-Length, Accept-Encod
 class IsJP {
 	public const FLAG_JSON_ENCODE = JSON_PRETTY_PRINT | JSON_INVALID_UTF8_IGNORE | JSON_UNESCAPED_SLASHES;
 	public const FLAG_JSON_DECODE = JSON_INVALID_UTF8_IGNORE | JSON_UNESCAPED_SLASHES | JSON_INVALID_UTF8_IGNORE | JSON_INVALID_UTF8_SUBSTITUTE | JSON_OBJECT_AS_ARRAY | JSON_THROW_ON_ERROR;
-	public const IPV4_FETUS_JP = 'https://ipv4.fetus.jp/jp.txt';
-	public const IPV4_FETUS_EN = 'https://ipv4.fetus.jp/us.txt';
 	public const PDO_OPTION = [
 		PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
 		PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
 		PDO::ATTR_EMULATE_PREPARES => true,
 		PDO::ATTR_PERSISTENT => true,
 	];
+	public const IPV4_FETUS_JP = 'https://ipv4.fetus.jp/jp.txt';
+	public const IPV4_FETUS_EN = 'https://ipv4.fetus.jp/us.txt';
 	public $config = [];
 	public $pdo_dsn = 'sqlite::memory:';
 
