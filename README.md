@@ -31,9 +31,6 @@
 ```http
 GET https://api.n138.jp/isJP/
 ```
-```http
-GET /isJP/index.php
-```
 
 ## Supported Web Server
 
