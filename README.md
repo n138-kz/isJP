@@ -39,7 +39,7 @@ GET https://api.n138.jp/isJP/
 
 ## Requires
 
-- HTTP WEB Server(Apacheなど)
+- HTTP WEB Server(i.e: Apache, nginx)
 - PHP
 
 ## Secret Config
