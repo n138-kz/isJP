@@ -147,10 +147,10 @@ class IsJP {
 		}
 	}
 
-	function put_logdb($reqip){
+	function put_logdb($reqip, $result){
 		try {
 			$pdo = new PDO( $this->pdo_dsn, null, null, self::PDO_OPTION );
-			$stm = $pdo->prepare('INSERT INTO ' . $this->config['internal']['databases'][0]['tableprefix'] . ' VALUES (:timestamp, :uuid, :client, :client_nameofaddr, :request);');
+			$stm = $pdo->prepare('INSERT INTO ' . $this->config['internal']['databases'][0]['tableprefix'] . ' VALUES (:timestamp, :uuid, :client, :client_nameofaddr, :request, :isjp);');
 			$attr = [
 				'timestamp'=>microtime(true),
 				'uuid'=>preg_replace_callback(
@@ -163,6 +163,7 @@ class IsJP {
 				'client'=>$_SERVER['REMOTE_ADDR'],
 				'client_nameofaddr'=>gethostbyaddr($_SERVER['REMOTE_ADDR']),
 				'request'=>$reqip,
+				'isjp'=>$result,
 			];
 			if(! $stm->execute($attr)){
 				throw new \Exception('SQL Error');
@@ -242,7 +243,7 @@ class IsJP {
 			$this->concat([$_SERVER['REQUEST_SCHEME'], '://', $_SERVER['HTTP_HOST'], preg_replace('/\?.*/', '', $_SERVER['REQUEST_URI']), '?ip=', $reqip, ''])
 		);
 
-		$this->put_logdb($reqip);
+		$this->put_logdb($reqip,$result['result']['result']['result']);
 		return json_encode( $result, self::FLAG_JSON_ENCODE);
 	}
 }
