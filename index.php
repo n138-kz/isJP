@@ -235,10 +235,8 @@ class IsJP {
 		}
 
 		$result['result']['result']=$this->isJP($reqip);
-		$result['result']['request']=[
-			'request'=>$reqip,
-			'detail'=>gethostbyaddr($reqip),
-		];
+		$result['result']['request']['request']=$reqip;
+		$result['result']['request']['detail']=gethostbyaddr($reqip);
 		array_push($result['usage'],
 			$this->concat([$_SERVER['REQUEST_SCHEME'], '://', $_SERVER['HTTP_HOST'], preg_replace('/\?.*/', '', $_SERVER['REQUEST_URI']), '?ip=', $reqip, ''])
 		);
