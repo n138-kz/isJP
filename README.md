@@ -45,6 +45,33 @@ GET /isJP/index.php
 - HTTP WEB Server(Apacheなど)
 - PHP
 
+## Secret Config
+
+```
+./.secret/config.json
+```
+```json
+{
+    "internal": {
+        "databases": [
+            {
+                "host": "127.0.0.1",
+                "port": "5432",
+                "schema": "pgsql",
+                "user": "postgres",
+                "password": "postgres",
+                "database": "postgres",
+                "tableprefix": "isjp"
+            }
+        ],
+        "api": {
+            "ratelimit": 100,
+            "timelimit": "10 minute"
+        }
+    }
+}
+```
+
 ## Database
 
 ```sql
