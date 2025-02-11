@@ -150,7 +150,7 @@ class IsJP {
 	function put_logdb($reqip){
 		try {
 			$pdo = new PDO( $this->pdo_dsn, null, null, self::PDO_OPTION );
-			$stm = $pdo->prepare('INSERT INTO ' . $this->config['internal']['databases'][0]['tableprefix'] . ' VALUES (:timestamp, :uuid, :client, :client-nameofaddr, :request);');
+			$stm = $pdo->prepare('INSERT INTO ' . $this->config['internal']['databases'][0]['tableprefix'] . ' VALUES (:timestamp, :uuid, :client, :client_nameofaddr, :request);');
 			$attr = [
 				'timestamp'=>microtime(true),
 				'uuid'=>preg_replace_callback(
@@ -161,7 +161,7 @@ class IsJP {
 					'xxxxxxxx_xxxx_4xxx_yxxx_xxxxxxxxxxxx'
 				),
 				'client'=>$_SERVER['REMOTE_ADDR'],
-				'client_ipbyname'=>gethostbyaddr($_SERVER['REMOTE_ADDR']),
+				'client_nameofaddr'=>gethostbyaddr($_SERVER['REMOTE_ADDR']),
 				'request'=>$reqip,
 			];
 			if(! $stm->execute($attr)){
