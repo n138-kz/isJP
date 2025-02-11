@@ -29,9 +29,8 @@
 サーバの設定で `DirectoryIndex index.php` を設定している場合はファイル名を省略できます。もしくはファイル名を置換してください。
 
 ```http
-GET /isJP/
+GET https://api.n138.jp/isJP/
 ```
-
 ```http
 GET /isJP/index.php
 ```
