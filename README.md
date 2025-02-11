@@ -49,21 +49,40 @@ GET /isJP/index.php
 
 ```sql
 CREATE TABLE IF NOT EXISTS isjp (
-    "timestamp" double precision NOT NULL,
-    uuid text NOT NULL,
-    client text NOT NULL,
-    request text NOT NULL
+  "timestamp" double precision NOT NULL,
+  uuid text NOT NULL,
+  client text NOT NULL,
+  request text NOT NULL,
+  client_nameofaddr text,
+  isjp boolean DEFAULT false,
+  CONSTRAINT isjp_pkey PRIMARY KEY (uuid)
 );
 ```
 ```sql
 CREATE OR REPLACE VIEW isjp_in10min
- AS
- SELECT "timestamp",
-    uuid,
-    client,
-    request
-   FROM isjp
-   WHERE "timestamp" > EXTRACT(EPOCH FROM CURRENT_TIMESTAMP - interval '10 minute');
+  AS
+  SELECT isjp."timestamp",
+    isjp.uuid,
+    isjp.client,
+    isjp.client_nameofaddr,
+    isjp.request,
+    isjp.isjp
+    FROM isjp
+  WHERE isjp."timestamp" > EXTRACT(epoch FROM CURRENT_TIMESTAMP - '00:10:00'::interval)::double precision
+  ORDER BY isjp."timestamp";;
+```
+```sql
+CREATE OR REPLACE VIEW isjp_in10min
+  AS
+  SELECT isjp."timestamp",
+    isjp.uuid,
+    isjp.client,
+    isjp.client_nameofaddr,
+    isjp.request,
+    isjp.isjp
+    FROM isjp
+  WHERE isjp."timestamp" > EXTRACT(epoch FROM CURRENT_TIMESTAMP - '01:00:00'::interval)::double precision
+  ORDER BY isjp."timestamp";;
 ```
 
 ## 出力データVersionログ
