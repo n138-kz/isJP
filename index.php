@@ -150,7 +150,7 @@ class IsJP {
 	function put_logdb($reqip, $result){
 		try {
 			$pdo = new PDO( $this->pdo_dsn, null, null, self::PDO_OPTION );
-			$stm = $pdo->prepare('INSERT INTO ' . $this->config['internal']['databases'][0]['tableprefix'] . ' VALUES (:timestamp, :uuid, :client, :client_nameofaddr, :request, :isjp);');
+			$stm = $pdo->prepare('INSERT INTO ' . $this->config['internal']['databases'][0]['tableprefix'] . ' (timestamp,uuid,client,client_nameofaddr,request,isjp) VALUES (:timestamp, :uuid, :client, :client_nameofaddr, :request, :isjp);');
 			$attr = [
 				'timestamp'=>microtime(true),
 				'uuid'=>preg_replace_callback(
