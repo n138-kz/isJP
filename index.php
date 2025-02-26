@@ -174,6 +174,20 @@ class IsJP {
 			}
 		} catch (\Exception $th) {
 			error_log($th->getMessage());
+			error_log(json_encode([
+				'timestamp'=>microtime(true),
+				'uuid'=>preg_replace_callback(
+					'/x|y/',
+					function($m) {
+						return dechex($m[0] === 'x' ? random_int(0, 15) : random_int(8, 11));
+					},
+					'xxxxxxxx_xxxx_4xxx_yxxx_xxxxxxxxxxxx'
+				),
+				'client'=>$_SERVER['REMOTE_ADDR'],
+				'client_nameofaddr'=>gethostbyaddr($_SERVER['REMOTE_ADDR']),
+				'request'=>$reqip,
+				'isjp'=>(bool)$result,
+			], self::FLAG_JSON_ENCODE));
 		}
 	}
 
