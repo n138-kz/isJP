@@ -235,7 +235,16 @@ class IsJP {
 			$reqip = $_GET['ip'];
 		}
 
-		$result['result']['result']=$this->isJP($reqip);
+		if (strpos($subject,':') === false) {
+			/* IPv4 **/
+			$result['result']['result']=$this->isJP($reqip);
+		} else {
+			/* IPv6 **/
+			/*
+			- https://www.nic.ad.jp/ja/dns/ipv6-addr-block.html
+			*/
+			$result['result']['result']=$this->['result'=>FALSE, 'detail'=>'IPv6 is not supported.'];
+		}
 		$result['result']['request']['request']=$reqip;
 		$result['result']['request']['detail']=gethostbyaddr($reqip);
 		$result['result']['request']['useragent']=$_SERVER['HTTP_USER_AGENT'];
