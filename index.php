@@ -239,7 +239,7 @@ class IsJP {
 			$reqip = $_GET['ip'];
 		}
 
-		if (strpos($subject,':') === false) {
+		if (strpos($reqip,':') === false) {
 			/* IPv4 **/
 			$result['result']['result']=$this->isJP($reqip);
 		} else {
