@@ -153,6 +153,7 @@ class IsJP {
 
 	function put_logdb($reqip, $result){
 		try {
+			$result=$result?'true':'false';
 			$pdo = new PDO( $this->pdo_dsn, null, null, self::PDO_OPTION );
 			$stm = $pdo->prepare('INSERT INTO ' . $this->config['internal']['databases'][0]['tableprefix'] . ' (timestamp,uuid,client,client_nameofaddr,request,isjp) VALUES (:timestamp, :uuid, :client, :client_nameofaddr, :request, :isjp);');
 			$attr = [
@@ -167,7 +168,7 @@ class IsJP {
 				'client'=>$_SERVER['REMOTE_ADDR'],
 				'client_nameofaddr'=>gethostbyaddr($_SERVER['REMOTE_ADDR']),
 				'request'=>$reqip,
-				'isjp'=>(bool)$result,
+				'isjp'=>$result,
 			];
 			if(! $stm->execute($attr)){
 				throw new \Exception('SQL Error');
@@ -186,7 +187,7 @@ class IsJP {
 				'client'=>$_SERVER['REMOTE_ADDR'],
 				'client_nameofaddr'=>gethostbyaddr($_SERVER['REMOTE_ADDR']),
 				'request'=>$reqip,
-				'isjp'=>(bool)$result,
+				'isjp'=>$result,
 			], self::FLAG_JSON_ENCODE));
 		}
 	}
