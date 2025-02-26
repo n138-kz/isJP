@@ -17,6 +17,10 @@ class IsJP {
 	];
 	public const IPV4_FETUS_JP = 'https://ipv4.fetus.jp/jp.txt';
 	public const IPV4_FETUS_EN = 'https://ipv4.fetus.jp/us.txt';
+	public $refs = [
+		'IPV4_FETUS_JP'=>self::IPV4_FETUS_JP,
+		'IPV4_FETUS_EN'=>self::IPV4_FETUS_EN,
+	];
 	public $config = [];
 	public $pdo_dsn = 'sqlite::memory:';
 
