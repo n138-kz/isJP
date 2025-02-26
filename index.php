@@ -247,7 +247,7 @@ class IsJP {
 			/*
 			- https://www.nic.ad.jp/ja/dns/ipv6-addr-block.html
 			*/
-			$result['result']['result']=$this->['result'=>FALSE, 'detail'=>'IPv6 is not supported.'];
+			$result['result']['result']=['result'=>FALSE, 'detail'=>'IPv6 is not supported.'];
 		}
 		$result['result']['request']['request']=$reqip;
 		$result['result']['request']['detail']=gethostbyaddr($reqip);
