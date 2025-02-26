@@ -167,7 +167,7 @@ class IsJP {
 				'client'=>$_SERVER['REMOTE_ADDR'],
 				'client_nameofaddr'=>gethostbyaddr($_SERVER['REMOTE_ADDR']),
 				'request'=>$reqip,
-				'isjp'=>$result,
+				'isjp'=>(bool)$result,
 			];
 			if(! $stm->execute($attr)){
 				throw new \Exception('SQL Error');
